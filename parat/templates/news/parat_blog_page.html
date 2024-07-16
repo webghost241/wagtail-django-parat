@@ -1,0 +1,148 @@
+{% extends "puput/base.html" %}
+{% load breadcrumbs %}
+{% load static i18n wagtailcore_tags wagtailimages_tags puput_tags social_share %}
+{% block social_share %}
+    {% image blog_page.header_image fill-800x450 as share_image %}
+    <meta property="og:title"
+          content="{% firstof blog_page.seo_title blog_page.title %}" />
+    <meta property="og:description"
+          content="{% firstof blog_page.search_description blog_page.description %}" />
+    <meta property="og:url" content="{% canonical_url %}" />
+    {% if blog_page.header_image %}
+        <meta property="og:image" content="{% image_url share_image.url %}" />
+        <meta property="og:image:width" content="800" />
+        <meta property="og:image:height" content="450" />
+        <meta name="twitter:image" content="{% image_url share_image.url %}" />
+    {% endif %}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title"
+          content="{% firstof blog_page.seo_title blog_page.title %}" />
+    <meta name="twitter:description"
+          content="{% firstof blog_page.search_description blog_page.description %}" />
+    <meta name="description"
+          content="{% firstof blog_page.search_description blog_page.description %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock social_share %}
+{% block content %}
+    <header class="d-flex flex-column justify-content-end"
+            style="min-height: 5rem">
+        <div class="container my-1 my-md-4">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb d-flex align-items-center">
+                    {% for p in page.get_ancestors %}
+                        {% if p.is_root == False %}
+                            {% if forloop.counter0 == 1 or forloop.counter0 > page.get_ancestors.count|add:"-2" %}
+                                <li class="breadcrumb-item">
+                                    <a href="{{ p.url }}">{{ p.title }}</a>
+                                </li>
+                            {% else %}
+                                <li class="breadcrumb-item">...</li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row d-flex col-lg-12 px-4 py-5 my-5 justify-content-start">
+            <div class="col-12 col-lg-8 offset-lg-1 gx-0 d-flex justify-content-left flex-column">
+                <h1 class="preheadline">{{ blog_page.title }}</h1>
+                <h2 class="display-1 mb-3">{{ blog_page.introduction_subheadline }}</h2>
+            </div>
+        </div>
+    </div>
+    {% if entries %}
+        <section class="section-split_row_block text-bg-light">
+            <div class="container post-overview">
+                {# TODO: animated-block ?#}
+                {% with front_page_post=entries.0 %}
+                    <div class="d-flex col-12 flex-column flex-lg-row align-items-center">
+                        {# Image #}
+                        <div class="col-lg-6 col-12">
+                            <a class="text-link" href="{{ front_page_post.url }}">
+                                {% if front_page_post.header_image %}
+                                    {% image front_page_post.header_image fill-790x526 as header_image %}
+                                    <img class="rounded-5 img-fluid my-3 shadow"
+                                         alt="{{ front_page_post.header_image.title }}"
+                                         src="{{ header_image.url }}">
+                                {% else %}
+                                    <div style="height: 526px !important;">
+                                        <img class="rounded-5 img-fluid my-3 shadow bg-primary"
+                                             alt="{{ front_page_post.header_image.title }}"
+                                             src="{% static 'images/parat-image-logo-poster.png' %}">
+                                    </div>
+                                {% endif %}
+                            </a>
+                        </div>
+                        {# Text #}
+                        <div class="column-hero-text-block gx-2 d-flex justify-content-center flex-column align-items-center col-lg-6 col-12">
+                            <div class="col justify-content-center col-12 col-lg-8">
+                                <header class="my-3">
+                                    <h2 class="headline">{{ front_page_post.title|linebreaksbr }}</h2>
+                                    {% if front_page_post.subtitle %}
+                                        <h5 class="card-title mt-2 mb-3">{{ front_page_post.subtitle|linebreaksbr }}</h5>
+                                    {% endif %}
+                                    <time>{{ front_page_post.date|date:"DATE_FORMAT" }}</time>
+                                </header>
+                                <div>
+                                    {% if front_page_post.excerpt %}
+                                        {{ front_page_post.excerpt|richtext|truncatewords_html:30 }}
+                                    {% else %}
+                                        {{ front_page_post.body|richtext|truncatewords_html:30 }}
+                                    {% endif %}
+                                </div>
+                                {% if self.page or self.url %}
+                                    <p class="my-4 ">
+                                        <a class="text-link arrowed-link" href="{{ front_page_post.url }}">{% translate "Mehr erfahren" %}</a>
+                                    </p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endwith %}
+            </div>
+        </section>
+        <section class="news container">
+            <div class="news-wrapper col-12 d-flex flex-column flex-lg-row align-items-center justify-content-center">
+                {% for entry in pagination_object %}
+                    <a href="{{ entry.url }}" class="card-container col-12 col-lg-3">
+                        <div class="card">
+                            {% image entry.header_image height-288 as card_image %}
+                            {% if card_image.url %}
+                                <div class="card-img-top"
+                                     style="background-image:url({{ card_image.url }});
+                                            {{ image.background_position_style }}"></div>
+                            {% else %}
+                                <div class="card-img-top bg-primary" style="background-size: 200px; background-image:url({% static "images/logo.svg" %}); {{ image.background_position_style }}">
+                                </div>
+                            {% endif %}
+                            <div class="card-body">
+                                <h6 class="preheadline">{% translate "News" %}</h6>
+                                <h4 class="card-title">{{ entry.title|linebreaksbr }}</h4>
+                                {% if entry.subtitle %}<h6 class="preheadline-card">{{ entry.subtitle|linebreaksbr }}</h6>{% endif %}
+                                <div class="card-text">
+                                    {% if entry.excerpt %}
+                                        {{ entry.excerpt|richtext|truncatewords_html:10 }}
+                                    {% else %}
+                                        {{ entry.body|richtext|truncatewords_html:5 }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <span class="card-link">{% translate "Mehr erfahren" %}</span>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+            <div class="d-flex flex-column flex-lg-row align-items-center justify-content-around mx-lg-10 mx-0">
+                {% include "includes/paginator.html" with pagination_object=pagination_object %}
+            </div>
+        </div>
+    </section>
+{% else %}
+    <div class="container my-5">{% translate "Keine News vorhanden!" %}</div>
+{% endif %}
+{% endblock content %}

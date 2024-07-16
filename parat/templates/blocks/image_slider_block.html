@@ -1,0 +1,16 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+<div class="image-slider">
+	<div class="swiper-container">
+		<div class="image-slider--wrapper swiper">
+			<div class="swiper-wrapper">
+				{% for slide_img in self.images %}
+					{% image slide_img height-520 as img %}
+					<img class="swiper-slide rounded-5" src="{{ img.url }}">
+				{% endfor %}
+			</div>
+		</div>
+		<div class="swiper-button-prev"><i class="bi bi-chevron-left"></i></div>
+		<div class="swiper-button-next"><i class="bi bi-chevron-right"></i></div>
+	</div>
+</div>

@@ -1,0 +1,29 @@
+{% extends "core/standard_page.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load breadcrumbs %}
+{% block after_body_blocks %}
+	<script async defer src="https://cdn.captchafox.com/api.js"></script>
+	<section id="contact_form" class="py-5">
+		<div class="container">
+			<div class="row d-flex justify-content-center">
+				<div class="col-md-12 row justify-content-between">
+					<div class="col-12 col-lg-4">
+						{{ page.contact_information|richtext }}
+					</div>
+					<div class="col-12 col-lg-7">
+						<form class="floating-label" id="contact-form" method="post" up-submit>
+							{{ page.form_header|richtext }}
+
+							{% crispy form %}
+                            <div class="d-flex justify-content-between flex-row-reverse">
+                                <button id="captchafox-submit-button" type="submit" class="btn btn-primary my-2">{% translate 'Anfrage senden' %}</button>
+                                <div class="captchafox" data-sitekey="sk_o843PqLComM7GhbXFoW7GkG9aqoB4" data-mode="hidden"></div>
+                            </div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</section>
+{% endblock %}

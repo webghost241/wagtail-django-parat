@@ -1,0 +1,304 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-03 10:52+0000\n"
+"PO-Revision-Date: 2023-11-27 14:50+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "core.documentation.openapi_get_version_description"
+msgstr "Obtains the software's version and api version"
+
+msgid "core.documentation.openapi_get_version_summary"
+msgstr "Obtains the software's version."
+
+msgid "core.blocks.help_text_embed_block"
+msgstr "Insert an embed URL e.g. a youtube video"
+
+msgid "Seiten Inhalt"
+msgstr ""
+
+msgid "Custom CSS Class"
+msgstr ""
+
+msgid "Custom ID"
+msgstr ""
+
+msgid "Advanced Settings"
+msgstr ""
+
+msgid "Template"
+msgstr ""
+
+msgid "Tracking Event Category"
+msgstr ""
+
+msgid "Tracking Event Label"
+msgstr ""
+
+msgid "Column Breakpoint"
+msgstr ""
+
+msgid ""
+"Screen size at which the column will expand horizontally or stack vertically."
+msgstr ""
+
+msgid "Content"
+msgstr ""
+
+msgid "page to link to"
+msgstr ""
+
+msgid "external URL to link to"
+msgstr ""
+
+msgid "the text on the button"
+msgstr ""
+
+msgid "Button style"
+msgstr ""
+
+msgid "Button size"
+msgstr ""
+
+msgid "alternativer Text wenn das Bild nicht angezeigt werden kann."
+msgstr ""
+
+msgid "Alt Text"
+msgstr ""
+
+msgid "Schatten"
+msgstr ""
+
+msgid "Inhalt"
+msgstr ""
+
+msgid "Mehr erfahren"
+msgstr "Learn more"
+
+msgid "Link Text, wird nur angezeigt wenn eine Seite oder ein"
+msgstr ""
+
+msgid "Seite auf die verlinkt werden soll"
+msgstr ""
+
+msgid "externe URL auf die verlinkt werden soll"
+msgstr ""
+
+msgid "Hero-Block"
+msgstr ""
+
+msgid "Es kann nur entweder eine Seite oder eine externe URL verlinkt werden"
+msgstr ""
+
+msgid "Block"
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "Schwarz"
+msgstr ""
+
+msgid "Rot"
+msgstr ""
+
+msgid "Hellgrau"
+msgstr ""
+
+msgid "Hintergrundfarbe"
+msgstr ""
+
+msgid "Vollzeilenblock"
+msgstr ""
+
+msgid "Linker Block"
+msgstr ""
+
+msgid "Rechter Block"
+msgstr ""
+
+msgid "Halb - 1/2 | 1/2 Spalten"
+msgstr ""
+
+msgid "Drittel - 1/3 | 2/3 Spalten"
+msgstr ""
+
+msgid "Drittel - 2/3 | 1/3 Spalten"
+msgstr ""
+
+msgid "Spaltenaufteilung"
+msgstr ""
+
+msgid "Erste über zweiter Spalte"
+msgstr ""
+
+msgid "Zweite über erster Spalte"
+msgstr ""
+
+msgid "Mobile Anordnung"
+msgstr ""
+
+msgid "Welche Spalte in der Mobilen Ansicht zuerst zu sehen sein soll."
+msgstr ""
+
+msgid "Geteilter Zeilenblock"
+msgstr ""
+
+msgid "Erste Spalte"
+msgstr ""
+
+msgid "Zweite Spalte"
+msgstr ""
+
+msgid "Dritte Spalte"
+msgstr ""
+
+msgid "Vierte Spalte"
+msgstr ""
+
+msgid "4 Elemente Zeilenblock"
+msgstr ""
+
+msgid "3 Elemente Zeilenblock"
+msgstr ""
+
+msgid "Pre-Headline"
+msgstr ""
+
+msgid "Headline"
+msgstr ""
+
+msgid "Linksbündig"
+msgstr ""
+
+msgid "Zentriert"
+msgstr ""
+
+msgid "Textbündigkeit"
+msgstr ""
+
+msgid "Textbündigkeit von Pre-Headline, Headline und Inhalt"
+msgstr ""
+
+msgid "Hero-Spalten Text Block"
+msgstr ""
+
+msgid "Bildformat"
+msgstr ""
+
+msgid "Hero-Spalten Bild Block"
+msgstr ""
+
+msgid "Hero-Spalten Carousel Block"
+msgstr ""
+
+msgid "Zentrierter Text"
+msgstr ""
+
+msgid "Buttonlink"
+msgstr ""
+
+msgid "Link wird als Button dargestellt."
+msgstr ""
+
+msgid "Headline und Text Block"
+msgstr ""
+
+msgid "Headline und Text Block Mit Video"
+msgstr ""
+
+msgid "Vorschaubild"
+msgstr ""
+
+msgid "Video URL"
+msgstr ""
+
+msgid "Youtube oder Vimeo URL."
+msgstr ""
+
+msgid "Lokales Video"
+msgstr ""
+
+msgid "Lokal gehostetes Video aussuchen"
+msgstr ""
+
+msgid "Ganze Breite"
+msgstr ""
+
+msgid "Auto Play"
+msgstr ""
+
+msgid "Bestimmt ob das Video automatisch abgespielt werden soll."
+msgstr ""
+
+msgid "Video Einbettungsblock"
+msgstr ""
+
+msgid "Icon Block"
+msgstr ""
+
+msgid "Gib einen Text für eine eigene URL an."
+msgstr ""
+
+msgid "Gib eine URL ein auf die dieser Menüpunkt verweisen soll."
+msgstr ""
+
+msgid "Deutsch"
+msgstr ""
+
+msgid "Englisch"
+msgstr ""
+
+msgid "Link in neuem Tab öffnen."
+msgstr ""
+
+msgid "Externe URL"
+msgstr ""
+
+msgid "core.models.formpage_inline_panel_label"
+msgstr "Form fields"
+
+msgid "Header Image"
+msgstr "Header Image"
+
+msgid "Eingangstext"
+msgstr ""
+
+msgid "Text unter der Headline"
+msgstr ""
+
+#, fuzzy
+#| msgid "Header Image"
+msgid "Card Image"
+msgstr "Header Image"
+
+msgid "Tracking"
+msgstr ""
+
+msgid "G Tracking ID"
+msgstr ""
+
+msgid "Ihre Google Analytics 4 tracking ID (beginnt mit \"G-\")"
+msgstr ""
+
+msgid "Google Analytics"
+msgstr ""
+
+#~ msgid "core.models.standardpage_help_text_introduction"
+#~ msgstr "Text to describe the page"
+
+#~ msgid "core.models.standardpage_verbose_name_body"
+#~ msgstr "Page body"

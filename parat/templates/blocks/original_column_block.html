@@ -1,0 +1,6 @@
+{% load wagtailcore_tags %}
+<div class="col-12 col-md{% if self.column_size %}-{{ self.column_size }}{% endif %}">
+	{% for block in self.content %}
+		{% include_block block %}
+	{% endfor %}
+</div>

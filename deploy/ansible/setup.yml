@@ -1,0 +1,48 @@
+---
+- hosts: all
+  remote_user: root
+  become: false
+  tasks:
+    - name: create service user
+      ansible.builtin.user:
+        name: "parat-{{ stage }}"
+        groups: docker
+        shell: /bin/bash
+        append: true
+
+    - name: add ssh-keys
+      ansible.posix.authorized_key:
+        user: "parat-{{ stage }}"
+        state: present
+        key: "{{ item }}"
+      loop:
+        - https://gitlab.sphericalelephant.com/f.shahbazi.keys
+        - https://gitlab.sphericalelephant.com/m.holczmann.keys
+        - https://gitlab.sphericalelephant.com/p.sturm.keys
+        - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICATClfDnRq2wq+MeqL+2S1LhMQaRplHHxelu1mhAFl5 gitlab-ci"
+
+    - ansible.builtin.file:
+        path: "/data/parat-{{ item }}"
+        owner: 1000
+        group: 1000
+        mode: 0750
+        state: directory
+      loop:
+        - "{{ stage }}"
+        - "{{ stage }}/data/media"
+
+    - name: configure env
+      ansible.builtin.template:
+        dest: "~parat-{{ stage }}/.env"
+        src: environment.j2
+        owner: "parat-{{ stage }}"
+        group: "parat-{{ stage }}"
+        mode: 0700
+
+    - name: docker login
+      become: true
+      become_user: "parat-{{ stage }}"
+      community.docker.docker_login:
+        username: "parat-{{ stage }}-docker"
+        password: "{{ lookup('gopass', 'sphericalelephant/parat/' + stage + '/gitlab_registry') }}"
+        registry_url: registry.sphericalelephant.com

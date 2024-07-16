@@ -1,0 +1,8 @@
+{% load i18n %}
+{% load wagtailimages_tags %}
+<div class="container-fluid d-flex flex-column">
+	<h5 class="my-3">{% translate "Folge uns" %}</h5>
+	{% for media in footer_social_media %}
+	<span>{% image media.icon fill-20x20 %} <a class="link-footer" href="{{ media.url }}">{{ media.text }}</a></span>
+	{% endfor %}
+</div>

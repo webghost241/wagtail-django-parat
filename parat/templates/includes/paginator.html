@@ -1,0 +1,33 @@
+{% load query_transform %}
+{% if pagination_object.paginator.num_pages > 1 %}
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="pagination mt-4">
+					{% if pagination_object.has_previous %}
+						<li class="page-item">
+							<a href="{{ request.path }}?{% query_transform page=pagination_object.previous_page_number %}" class="page-link">
+								<i class="bi bi-chevron-left"></i>
+							</a>
+						</li>
+					{% endif %}
+
+					{% for page_num in pagination_object.paginator.page_range %}
+						<li class="page-item {% if page_num == pagination_object.number %}active{% endif %}">
+							<a href="{{ request.path }}?{% query_transform page=page_num %}" class="page-link">
+								{{ page_num }}
+							</a>
+						</li>
+					{% endfor %}
+					{% if pagination_object.has_next %}
+						<li class="page-item">
+							<a href="{{ request.path }}?{% query_transform page=pagination_object.next_page_number %}" class="page-link">
+								<i class="bi bi-chevron-right"></i>
+							</a>
+						</li>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endif %}

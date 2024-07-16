@@ -1,0 +1,38 @@
+{% load i18n l10n wagtailcore_tags %}
+<div class="container my-md-6 my-5">
+	<div class="row justify-content-center">
+		<div class="col-md-6">
+			<h3 class="my-5">{{ self.title }}</h3>
+			<div class="d-flex flex-column gap-4 mt-5">
+				{% for job in self.jobs %}
+					<div class="card job-card border-0">
+						<header>
+							<h4>{{ job.headline }}</h4>
+						</header>
+							<div class="col-12 my-2">{{ job.short_description }}</div>
+							<div class="d-flex justify-content-between row mt-3">
+								<a class="text-link arrowed-link text-md-end d-md-block mt-3 mt-lg-0" href="{% pageurl job %} " target="_blank">
+									{{ self.link_text }}
+								</a>
+							</div>
+					</div>
+				{% empty %}
+					<h4>{% translate 'Deine Karrierechance bei PARAT' %}</h4>
+					{% blocktranslate trimmed %}
+						<p>
+							Derzeit sind alle Positionen in unserem Team besetzt, aber das bedeutet nicht, dass wir nicht auf der Suche nach Talenten wie Dir sind! PARAT ist stets interessiert an motivierten und engagierten Fachkräften, die unser Unternehmen bereichern wollen.
+						</p>
+						<p>
+							Zögere nicht, uns deine Initiativbewerbung zuzusenden oder besuche unsere Karriereseite regelmäßig, um zukünftige Möglichkeiten nicht zu verpassen.<br>
+							Deine Chance bei PARAT könnte nur einen Klick entfernt sein!
+						</p>
+					{% endblocktranslate %}
+					<a href="mailto:karriere@parat.de" class="btn btn-primary">
+						{% translate 'Initiativbewerbung' %}
+					</a>
+
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>

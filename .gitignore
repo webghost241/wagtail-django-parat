@@ -1,0 +1,7 @@
+tmp/
+.npm
+*.mo
+.coverage
+media
+env
+venv

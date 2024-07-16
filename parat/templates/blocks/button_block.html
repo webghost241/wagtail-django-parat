@@ -1,0 +1,9 @@
+<a href="{{self.url}}"
+	class="btn {{ self.style }} {{ self.size }}"
+	title="{{ self.text }}">
+	{% if self.text %}
+		{{ self.text|safe }}
+	{% else %}
+		{{ self.url }}
+	{% endif %}
+</a>

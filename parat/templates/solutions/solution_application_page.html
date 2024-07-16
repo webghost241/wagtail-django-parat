@@ -1,0 +1,46 @@
+{% extends "core/standard_page.html" %}
+{% load i18n %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block content %}
+    {% block header %}{{ block.super }}{% endblock %}
+    {% block body_blocks %}{{ block.super }}{% endblock %}
+    {% block after_body_blocks %}
+        <section class="dynamic-children-section">
+            <div class="py-4 dynamic-children-cards">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-10 mb-5">
+                            <h2 class="preheadline">{% translate "Einsatzgebiete" %}</h2>
+                            <h2 class="headline mt-2">{% translate "Im Überblick" %}</h2>
+                            {% if self.pre_headline %}<h2 class="preheadline">{{ self.pre_headline }}</h2>{% endif %}
+                            {% if self.headline %}<h3 class="h2">{{ self.headline }}</h3>{% endif %}
+                        </div>
+                    </div>
+                    <div class="row g-4">
+                        {% for child in page.get_siblings.live.specific %}
+                            {% if child != page %}
+                                <a href="{% pageurl child %}" class="col-md-6 col-lg-4 col-xl-3">
+                                    <div class="card shadow">
+                                        {% image child.header_image height-288 as card_image %}
+                                        <div class="card-img-top"
+                                             style="background-image:url({{ card_image.url }});
+                                                    {{ image.background_position_style }}"></div>
+                                        <div class="card-body">
+                                            <h5 class="preheadline-card">{{ child.introduction_headline }}</h5>
+                                            <h5 class="card-title">{{ child.introduction_subheadline }}</h5>
+                                            <p class="card-text">{{ child.introduction_text | richtext | truncatechars_html:80 }}</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <span class="card-link">{% translate "Mehr erfahren" %}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% include "includes/contact_modal.html" %}
+    {% endblock %}
+{% endblock %}

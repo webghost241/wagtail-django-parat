@@ -1,0 +1,24 @@
+{
+	"recommendations": [
+		"ms-python.python",
+		"editorconfig.editorconfig",
+		"lextudio.restructuredtext",
+		"trond-snekvik.simple-rst",
+		"syler.sass-indented",
+		"naumovs.color-highlight",
+		"mikestead.dotenv",
+		"streetsidesoftware.code-spell-checker",
+		"streetsidesoftware.code-spell-checker-german",
+		"ms-vscode-remote.remote-containers",
+		"shuworks.vscode-table-formatter",
+		"ms-azuretools.vscode-docker",
+		"wix.vscode-import-cost",
+		"gitlab.gitlab-workflow",
+		"mtxr.sqltools",
+		"mtxr.sqltools-driver-pg",
+		"ms-vscode-remote.vscode-remote-extensionpack",
+		"ms-python.flake8",
+		"ms-python.black-formatter",
+		"monosans.djlint"
+	]
+}

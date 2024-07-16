@@ -1,0 +1,25 @@
+{% extends "core/standard_page.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block content %}
+	{% block header %}
+		{{ block.super }}
+	{% endblock %}
+	{% block body_blocks %}
+		{% for block in page.body %}
+			<section class="section-{{block.block_type }}">
+				{% if block.block_type == "split_row_block" or block.block_type == "solution_cards" %}
+					<div class="">
+						{% include_block block %}
+					</div>
+				{%  else %}
+					<div class="container py-4">
+						{% include_block block %}
+					</div>
+				{% endif %}
+			</section>
+		{% endfor %}
+	{% endblock %}
+	{% block after_body_blocks %}
+		{% include "includes/contact_modal.html" %}
+	{% endblock %}
+{% endblock %}

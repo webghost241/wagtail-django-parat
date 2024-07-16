@@ -1,0 +1,58 @@
+{% load i18n l10n %}
+{% load static cookie_consent_tags %}
+{% load page_type_url %}
+
+{% all_cookie_groups 'cookie-consent__cookie-groups' %}
+
+{% comment %}
+{% if request|cookie_group_accepted:"required" %}
+	<p>required cookies accepted</p>
+{% elif request|cookie_group_declined:"required" %}
+	<p>required cookies declined</p>
+{% else %}
+	<p>required cookies not accepted or declined</p>
+{% endif %}
+{% if request|cookie_group_accepted:"statistics" %}
+	<p>statistics cookies accepted</p>
+{% elif request|cookie_group_declined:"statistics" %}
+	<p>statistics cookies declined</p>
+{% else %}
+	<p>statistics cookies not accepted or declined</p>
+{% endif %}
+{% endcomment %}
+
+{% url "cookie_consent_cookie_group_list" as url_cookies %}
+
+<template id="cookie-consent__cookie-bar">
+    <div class="cookie-bar">
+		{% translate "Diese Website verwendet Cookies, um eine bestmögliche Erfahrung bieten zu können." %}
+		{% page_type_url 'core' 'DataProtectionPage' as p %}
+		<a href="{{ p.url }}">{% translate 'Mehr Informationen' %}...</a>
+        <button type="button" class="btn btn-outline-dark btn-sm cookie-consent__decline">{% translate "Ablehnen" %}</button>
+        <a up-layer="new drawer" class="btn btn-outline-dark btn-sm" href="{{ url_cookies }}">{% translate "Konfigurieren" %}</a>
+        <button type="button" class="btn btn-outline-dark btn-sm cookie-consent__accept">{% translate "Alle Cookies akzeptieren" %}</button>
+    </div>
+</template>
+
+{% static "cookie_consent/cookiebar.module.js" as cookiebar_src %}
+{% url 'cookie_consent_status' as status_url %}
+<script type="module">
+    import {showCookieBar} from '{{ cookiebar_src }}';
+    showCookieBar({
+		statusUrl: '{{ status_url|escapejs }}',
+		templateSelector: '#cookie-consent__cookie-bar',
+		cookieGroupsSelector: '#cookie-consent__cookie-groups',
+		onShow: () => document.querySelector('body').classList.add('with-cookie-bar'),
+		//onAccept: () => document.querySelector('body').classList.remove('with-cookie-bar'),
+		onAccept: (cookieGroups) => {
+			document.querySelector('body').classList.remove('with-cookie-bar');
+			const analyticsEnabled = cookieGroups.find(group => group.varname === 'statistics') != undefined;
+			if (analyticsEnabled) {
+				const templateNode = document.getElementById('analytics-scripts');
+				const analyticsScripts = templateNode.content.cloneNode(true);
+				document.querySelector('body').appendChild(analyticsScripts);
+			}
+		},
+		onDecline: () => document.querySelector('body').classList.remove('with-cookie-bar'),
+    });
+</script>

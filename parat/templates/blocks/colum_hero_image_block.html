@@ -1,0 +1,12 @@
+{% load wagtailimages_tags %}
+{% if self.aspect_ratio == "1-1" %}
+    {% image self.image fill-1600x1600-c100 format-webp as self_image %}
+{% else %}
+    {% image self.image	fill-1600x1066-c100 format-webp as self_image %}
+{% endif %}
+<div class="text-center">
+    <img src="{{ self_image.url }}"
+         loading="lazy"
+         class="img-fluid rounded-5 {{ self.shadow }}"
+         alt="{% if self.attribution %}{{ self.attribution }}{% endif %}">
+</div>

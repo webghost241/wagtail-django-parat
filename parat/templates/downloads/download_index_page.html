@@ -1,0 +1,73 @@
+{% extends "core/standard_page.html" %}
+{% load crispy_forms_filters %}
+{% load query_transform %}
+{% load wagtailimages_tags %}
+{% load breadcrumbs %}
+{% load i18n %}
+{% block content %}
+	{% block header %}
+		{{ block.super }}
+	{% endblock %}
+	{% block body_blocks %}
+		<section id="download-section" class="py-4 py-md-5">
+			<div class="container my-md-6 my-5">
+				<div class="row justify-content-center my-5">
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-3">
+								<b>{% translate 'Kategorie' %}</b>
+							</div>
+							<div class="col-md-9 filter-buttons">
+								{% for id, label in filter.form.fields.c.choices %}
+									<a up-follow up-scroll="#download-section" href="{{ request.path }}?{% query_transform c=id %}" type="button" class="btn {% if c_chosen|slugify == id|slugify or not c_chosen and not id %} btn-primary {% else %} btn-secondary {% endif %} rounded-pill">{{ label }}</a>
+								{% endfor %}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">
+								<b>{% translate 'Sprache' %}</b>
+							</div>
+							<div class="col-md-9 filter-buttons">
+								{% for id, label in filter.form.fields.l.choices %}
+									<a up-follow up-scroll="#download-section" href="{{ request.path }}?{% query_transform l=id %}" type="button" class="btn {% if l_chosen|slugify == id|slugify or not l_chosen and not id %} btn-primary {% else %} btn-secondary {% endif %} rounded-pill">{{ label }}</a>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-md-6">
+						{% for category, download_list in downloads_by_category_dict.items %}
+							<div class="d-flex flex-column gap-3 mt-5 mb-4">
+								<h3>{{ category }}</h3>
+								{% for download in download_list %}
+									<div>
+										<div class="container-fluid card job-card mb-1">
+											<header>
+												<h4>{{ download.title }}</h4>
+											</header>
+											<div>
+												<div class="col-12 my-2">{{ download.description|default:"" }}</div>
+												<div class="d-flex justify-content-between row mt-3">
+													<div class="col-12 col-md-8">
+														<i class="bi bi-download me-1"></i> <span>{{ download.file.file_extension|upper }}</span> | <span>{{ download.file.get_mb_file_size }} MB </span> | <span>{% translate 'Sprache' %}: {% for lang in download.download_languages.all %}{{ lang.alpha_2|upper }}{% if not forloop.last %} / {% endif %}{% endfor %}</span>
+													</div>
+													<div class="d-flex flex-row-reverse col-12 col-md-4">
+														<a class="text-link arrowed-link text-md-end d-md-block mt-3 mt-lg-0" href="{{ download.file.url }}" target="_blank"> {% translate 'Download' %}</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								{% endfor %}
+							</div>
+						{% endfor %}
+						{% include "includes/paginator.html" with pagination_object=pagination_object %}
+					</div>
+				</div>
+			</div>
+		</section>
+	{% endblock %}
+{% endblock %}
+
+

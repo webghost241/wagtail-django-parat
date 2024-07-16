@@ -1,0 +1,36 @@
+{% load i18n %}
+{% load wagtailimages_tags %}
+
+<div id="carousel-{{ id }}" class="carousel slide column-hero--carousel rounded-5 shadow" data-bs-interval="5000" data-bs-touch="true" data-bs-ride="carousel">
+	<div class="carousel-indicators">
+		<div class="carousel-indicators-wrapper shadow rounded-pill">
+		{% for img in self.images %}
+			<button type="button" data-bs-target="#carousel-{{ id }}" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %} rounded-circle" aria-current="true" aria-label="Image {{ forloop.counter0 }}"></button>
+		{% endfor %}
+		</div>
+	</div>
+	<div class="carousel-inner rounded-5">
+		{% for img in self.images %}
+    		{% image img fill-1600x1066-c100 format-webp as self_image %}
+			<div class="carousel-item {% if forloop.first %}active{% endif %}">
+				<img src="{{ self_image.url }}" class="d-block w-100" alt="{{ self.caption }}">
+			</div>
+		{% endfor %}
+	</div>
+	<button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ id }}" data-bs-slide="prev">
+		<div class="carousel-control-icon-flex">
+			<div class="carousel-control-icon-wrapper">
+				<i class="bi-chevron-left"></i>
+			</div>
+		</div>
+		<span class="visually-hidden">{% translate 'Previous' %}</span>
+	</button>
+	<button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ id }}" data-bs-slide="next">
+		<div class="carousel-control-icon-wrapper">
+			<div class="carousel-control-icon-wrapper">
+				<i class="bi-chevron-right"></i>
+			</div>
+		</div>
+		<span class="visually-hidden">{% translate 'Next' %}</span>
+	</button>
+</div>

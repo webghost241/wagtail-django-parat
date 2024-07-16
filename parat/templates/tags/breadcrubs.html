@@ -1,0 +1,16 @@
+<nav aria-label="breadcrumb">
+    {% if page.get_ancestors|length > 1 %}
+    <ol class="breadcrumb{% if page.header_image %}-img{% endif %} d-flex align-items-center">
+		{% for p in page.get_ancestors %}
+			{% if p.is_root == False %}
+				{% if forloop.counter0 == 1 or forloop.counter0 > page.get_ancestors.count|add:"-2"  %}
+					<li class="breadcrumb-item"><a href="{{ p.url }}">{{ p.title }}</a></li>
+				{% else %}
+					<li class="breadcrumb-item">...</li>
+				{% endif %}
+			{% endif %}
+        {% endfor %}
+        <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
+    </ol>
+    {% endif %}
+</nav>

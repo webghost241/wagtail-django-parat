@@ -1,0 +1,50 @@
+ .. _i18n:
+
+i18n
+====
+
+Introduction
+------------
+
+i18n strings are provided on a per app basis, general strings may be provided under the "global" namespace. i18n string identifiers should
+adhere to the following convention, wherever possible.
+
+    $app.$section.$identifier
+
+
++-------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|   Segment   |                                                                                          Description                                                                                          |
++=============+===============================================================================================================================================================================================+
+| $app        | The name of the app or global for generalized strings                                                                                                                                         |
++-------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| $section    | The logical unit of organization, may by file name based, like "models", "views", "api", "admin", "documentation", "general", etc or concept based like "errors"                              |
++-------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| $identifier | A freeform identifier, try to encode the component if possible, for instance "core.models.formpage_inline_panel_label" indicates that the string is the label for an inline panel in FormPage |
++-------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+App based translations should be placed into app/locale, global translations must be placed into locale/.
+
+Sections
+--------
+
+The following sections are examples for string grouping. If necessary, the list may be amended.
+
++---------------+----------------------------------------------------------------------+
+|    Section    |                               Purpose                                |
++===============+======================================================================+
+| models        | model related strings                                                |
++---------------+----------------------------------------------------------------------+
+| views         | view or template related strings                                     |
++---------------+----------------------------------------------------------------------+
+| api           | api messages                                                         |
++---------------+----------------------------------------------------------------------+
+| admin         | admin related strings                                                |
++---------------+----------------------------------------------------------------------+
+| documentation | documentation related string, e.g. OpenAPI                           |
++---------------+----------------------------------------------------------------------+
+| general       | strings that have a more general usage, like "save"                  |
++---------------+----------------------------------------------------------------------+
+| blocks        | wagtail block related strings                                        |
++---------------+----------------------------------------------------------------------+
+| errors        | errors and exception messages, may also be grouped in other sections |
++---------------+----------------------------------------------------------------------+

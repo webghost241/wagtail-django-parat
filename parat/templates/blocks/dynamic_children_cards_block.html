@@ -1,0 +1,45 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% if page.get_children %}
+    <div class="py-4 dynamic-children-cards">
+        <div class="container">
+            {% if self.pre_headline or self.headline %}
+                <div class="row justify-content-center">
+                    <div class="col-10">
+                        {% if self.pre_headline %}<h2 class="preheadline">{{ self.pre_headline }}</h2>{% endif %}
+                        {% if self.headline %}<h2 class="headline mt-2">{{ self.headline }}</h2>{% endif %}
+                    </div>
+                </div>
+            {% endif %}
+            <div class="row g-4">
+                {% for child in page.get_children.live.specific %}
+                    {% if child.show_in_menus %}
+                        <a href="{% pageurl child %}" class="col-md-6 col-lg-4">
+                            <div class="card shadow">
+                                {% image child.header_image height-288 as card_image %}
+                                {% if child.card_image %}
+                                    {% image child.card_image height-288 as card_image %}
+                                {% else %}
+                                    {% image child.header_image height-288 as card_image %}
+                                {% endif %}
+                                <div class="card-img-top"
+                                     style="background-image:url({{ card_image.url }});
+                                            {{ image.background_position_style }}"></div>
+                                <div class="card-body">
+                                    <h5 class="preheadline">{% firstof child.introduction_headline child.title %}</h5>
+                                    <h6 class="card-title">{{ child.introduction_subheadline }}</h6>
+                                    <p class="card-text">
+                                        {% firstof child.introduction_text|richtext|truncatechars_html:128 child.description|richtext|truncatechars_html:128 %}
+                                    </p>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="card-link">{{ self.link_text }}</span>
+                                </div>
+                            </div>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}

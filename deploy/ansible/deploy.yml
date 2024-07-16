@@ -1,0 +1,19 @@
+---
+- hosts: all
+  user: "parat-{{ stage }}"
+  tasks:
+    - name: copy docker-compose.yml
+      ansible.builtin.copy:
+        src: "../../docker/docker-compose.{{ stage }}.yml"
+        dest: "~parat-{{ stage }}/docker-compose.yml"
+        owner: "parat-{{ stage }}"
+        group: "parat-{{ stage }}"
+    - name: deploy docker-compose
+      community.docker.docker_compose:
+        build: False
+        debug: False
+        env_file: "~parat-{{ stage }}/.env"
+        project_name: "parat-{{ stage }}"
+        project_src: "~parat-{{ stage }}/"
+        pull: True
+        remove_orphans: True

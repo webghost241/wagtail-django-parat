@@ -1,0 +1,21 @@
+{% load wagtailimages_tags wagtailcore_tags %}
+
+{% image self.background_image height-1024 as hero_image %}
+
+<div class="hero d-flex flex-column justify-content-end" style="background-image: url('{{hero_image.url}}'); color: {{ self.foreground_color|default:'inherit' }}; {{ hero_image.background_position_style }}">
+	<div class="gradient-overlay"></div>
+	{# comment TODO: add mask boolean field to HeroBlock  #}
+	{% if self.mask %}<div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">{% endif %}
+	<div class="container mb-5">
+		<h6 class="preheadline">{{ self.pre_headline }}</h6>
+		<h2 class="h2 my-2">{{ self.headline }}</h2>
+		{{ self.text|richtext }}
+
+		{% if self.page %}
+			<a class="btn btn-primary mt-3 mb-5" href="{{ self.page.url }}">{{ self.link_text }}</a>
+		{% elif self.url  %}
+			<a class="btn btn-primary mt-3 mb-5" href="{{ self.url }}">{{ self.link_text }}</a>
+		{% endif %}
+	</div>
+	{% if self.mask %}</div>{% endif %}
+</div>

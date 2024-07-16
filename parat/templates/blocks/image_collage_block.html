@@ -1,0 +1,11 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+<div class="image-collage image-collage__{{ self.style }}">
+	{% for img_slice in self.images %}
+		{% image img_slice height-520 as img %}
+		<div class="image-collage--image-wrap">
+			<img src="{{ img.url }}">
+		</div>
+	{% endfor %}
+</div>

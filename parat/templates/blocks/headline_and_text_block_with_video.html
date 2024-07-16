@@ -1,0 +1,35 @@
+{% load wagtailcore_tags %}
+<div class="textvideo-block">
+	<div class="column-hero-text-block d-flex justify-content-center flex-column">
+		<div class="col {% if self.centered %} text-center {% endif %} justify-content-center">
+			<header>
+				<h6 class="preheadline">{{ self.pre_headline }}</h6>
+				<h2 class="headline mt-2 mb-4">{{ self.headline }}</h2>
+			</header>
+			{{ self.text|richtext }}
+			<div class="position-relative">
+				<div class="video-container position-relative">
+					<video id="video-{{ value.video.id }}"
+						data-scroll-space="{{  self.scroll_space |default:"" }}"
+						data-scroll-space-mobile="{{  self.scroll_space_mobile |default:"" }}"
+						data-video-mobile="{{ self.video_mobile.file.url |default:"" }}"
+						data-video="{{ self.video.file.url |default:"" }}"
+						class="video-container-video">
+						<source src="{{ value.video.file.url }}" type="video/mp4">
+						Your browser does not support the video tag.
+					</video>
+				</div>
+				<div class="position-absolute top-0 left-0">
+					{% if self.page or self.url %}
+						<a href="{% if self.page %}{{ self.page.url }}{% else %}{{ self.url }}{% endif %}"
+							class="{% if self.link_with_button %}btn btn-primary{% else %}text-link arrowed-link{% endif %}">
+							{{ self.link_text }}
+						</a>
+					{% endif %}
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>

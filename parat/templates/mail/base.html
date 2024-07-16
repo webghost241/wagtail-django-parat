@@ -1,0 +1,441 @@
+{% load static %}
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
+	xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+	<!--[if gte mso 9]><xml><o:OfficeDocumentSettings><o:AllowPNG/><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml><![endif]-->
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<style  type="text/css" hash="03c90c0fe62b751e72c70cba27e5f574">
+
+	.ExternalClass { width:100%; }
+    .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height:145% !important; }
+    body, table, td, a { -webkit-text-size-adjust: none; -ms-text-size-adjust: none; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !important; }
+    img { -ms-interpolation-mode:bicubic; border:0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+    body, html { Margin: 0 !important; padding: 0 !important;  font-family: Verdana, Arial, Helvetica, sans-serif;}
+    body { height: 100%; width: 100%; margin: 0 auto !important; }
+
+		a {
+			outline: none;
+			color: #000000;
+			text-decoration: underline;
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+		}
+
+		a:hover {
+			text-decoration: none !important;
+		}
+
+		.h-u a {
+			text-decoration: none;
+		}
+
+		.h-u a:hover {
+			text-decoration: underline !important;
+		}
+
+		a[x-apple-data-detectors] {
+			color: inherit !important;
+			text-decoration: none !important;
+		}
+
+		a[href^="tel"]:hover {
+			text-decoration: none !important;
+		}
+
+		.active-i a:hover,
+		.active-t:hover {
+			opacity: 0.8;
+		}
+
+		.active-i a,
+		.active-t,
+		.btn,
+		.btn a {
+			transition: all 0.3s ease;
+		}
+
+		a img {
+			border: none;
+		}
+
+		b,
+		strong {
+			font-weight: 700;
+		}
+
+		p {
+			margin: 0;
+			font-weight: normal;
+			color: #000000;
+			text-align: left;
+			font-size:14px;
+			line-height: 22px;
+			 font-family: Verdana, Arial, Helvetica, sans-serif;
+		}
+
+		th {
+			padding: 0;
+		}
+
+		table td {
+			mso-line-height-rule: exactly;
+		}
+
+		.ns span,
+		.ns a {
+			color: inherit !important;
+			text-decoration: none !important;
+			border: none !important;
+		}
+
+		.l-white a {
+			color: #fff;
+		}
+
+		.bd-purple:hover {
+			background: #8246af !important;
+		}
+
+		.bd-purple:hover a {
+			color: #fff !important;
+		}
+
+		.bd-white:hover {
+			background: #fff !important;
+		}
+
+		.bd-white:hover a {
+			color: #333f48 !important;
+		}
+
+		.block{
+			display: block;
+		}
+
+		@media only screen and (max-width:637px) {
+
+			.w-100p {
+				width: 100% !important;
+			}
+
+			.thold {
+				display: table !important;
+				width: 100% !important;
+			}
+
+			table{
+				width: 100% !important;
+			}
+
+			.thead {
+				display: table-header-group !important;
+				width: 100% !important;
+			}
+
+			.tfoot {
+				display: table-footer-group !important;
+				width: 100% !important;
+			}
+
+			.hm {
+				display: none !important;
+				width: 0 !important;
+				height: 0 !important;
+				padding: 0 !important;
+				font-size: 0 !important;
+				line-height: 0 !important;
+			}
+
+			.wi-100p img {
+				width: 100% !important;
+				height: auto !important;
+			}
+			.img-responsive{
+				width: 100% !important;
+				height: auto !important;
+			}
+
+			.img-responsive2{
+				width: 60% !important;
+				height: auto !important;
+			}
+			.maxw-500 {
+				max-width: 500px !important;
+			}
+
+			.plr-20 {
+				padding-left: 20px !important;
+				padding-right: 20px !important;
+
+			}
+
+			.pt-20{
+				padding-top: 20px !important;
+			}
+
+			.pb-20{
+				padding-bottom: 20px !important;
+			}
+
+			.pb-30{
+				padding-bottom: 30px !important;
+			}
+
+			.pr-30{
+				padding-right: 30px !important;
+			}
+
+			.plr-30 {
+				padding-left: 30px !important;
+				padding-right: 30px !important;
+			}
+
+			.plrtb-30 {
+				padding-left: 30px !important;
+				padding-right: 30px !important;
+				padding-top: 30px !important;
+				padding-bottom: 30px !important;
+			}
+
+			.cta{
+				width: 180px !important;
+			}
+
+			.cta-about{
+				width: auto !important;
+			}
+
+			.pblr-30{
+				padding-left: 30px !important;
+				padding-right: 30px !important;
+				padding-bottom: 30px !important;
+			}
+
+			.pr-0{
+				padding-right: 0 !important;
+			}
+
+			.plrt-30{
+				padding-left: 30px !important;
+				padding-right: 30px !important;
+				padding-top: 30px !important;
+			}
+
+			.ptb-20 {
+				padding-top: 20px !important;
+				padding-bottom: 20px !important;
+			}
+
+			.ptb-30 {
+				padding-top: 30px !important;
+				padding-bottom: 30px !important;
+			}
+
+			.p-0{
+				padding:0 !important;
+			}
+			.pt-0 {
+				padding-top: 0 !important;
+			}
+			.pb-0 {
+				padding-bottom: 0 !important;
+			}
+			.text-center{text-align: center !important;}
+		}
+
+		@media (prefers-dark-interface) {
+			body {
+				-apple-color-filter: none;
+			}
+		}
+	</style>
+<meta charset="UTF-8" />
+<style data-source="autogenerated google-fixes">
+u + #CR-PRHEADER a { outline: none;
+			color: #000000;
+			text-decoration: underline;
+			font-family: Verdana, Arial, Helvetica, sans-serif; }
+u + #CR-PRHEADER { height: 100%; width: 100%; margin: 0 auto !important;-apple-color-filter: none; }
+</style>
+
+<meta name="robots" content="noindex,nofollow">
+
+
+<meta name="robots" content="noindex,nofollow">
+
+
+<meta name="robots" content="noindex,nofollow">
+
+
+<meta name="robots" content="noindex,nofollow">
+
+<style  hash="39ecbcf2ebf27047e142cd975e5850c3">
+            /*  @title Text
+                @group General
+                @order 1 */
+            .cr-text  {
+                font-family: Helvetica, Arial, sans-serif !important;
+                color: inherit;
+                font-size: 15px;
+                line-height: 140%;
+                font-weight: normal;
+                letter-spacing: inherit;
+            }
+
+            /*  @title Max width
+                @group General
+                @order 1
+            */
+            .cr-maxwidth {
+                max-width:600px;
+            }
+
+        </style>
+
+<style  type="text/css" hash="f78b9d78d8f185452f415a7869044032">
+            @media only screen and (min-width:480px) {
+                .cr-column-per-33 { width:33% !important; max-width: 33%; }
+                .cr-column-per-66 { width:66% !important; max-width: 66%; }
+                .cr-column-per-50 { width:50% !important; max-width: 50%; }
+            }
+        </style>
+
+<style  hash="6b4c9efc6ba4db1f1250125fbe2bd123">
+            /* @title  Mobile view padding
+                @group Images
+                @order 1 */
+            @media (max-width: 600px) {
+                .cr-image {
+                    padding: 20px !important;
+                }
+            }
+
+            @media (max-width: 600px) {
+                .cr-image img{
+                    width: 100% !important;
+                    height: 100% !important;
+                    display: inline !important;      }
+            }
+
+        </style>
+</head>
+
+<body id="body" style="height: 100%; width: 100%; margin: 0 auto !important; ;;;background:#F7F7F7; margin:0; padding:0; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;">
+	<table width="100%" style="background:#F7F7F7; min-width:320px;" cellspacing="0" cellpadding="0">
+		<tr>
+			<td style="padding:15px 10px 15px;">
+				<table class="w-100p maxw-500" width="600" align="center" style="max-width:600px; margin:0 auto;"
+					cellpadding="0" cellspacing="0">
+					<!-- section Header-->
+								<tr>
+									<td>
+										<table width="100%" cellpadding="0" cellspacing="0" bgcolor="#e30613">
+											<tr class="thold">
+												<th align="center" >
+													<table width="100%" cellpadding="0" cellspacing="0" align="center">
+														<tr>
+															<td class="ptb-20" style="padding:30px 0px 20px 0px">
+																<table width="auto" cellpadding="0" cellspacing="0" align="center">
+																	<tr>
+																		<td
+																			style="padding-bottom:10px;">
+																			<center>
+																				<img height="29" src="{{request.scheme}}://{{request.META.HTTP_HOST}}{% static "images/logo.svg" %}" width="172" style="width:172px;vertical-align:middle;" alt="Logo" />
+																			</center>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+
+													</table>
+												</th>
+											</tr>
+
+
+										</table>
+									</td>
+								</tr>
+					<!-- section Header-->
+
+
+					<!--PARAT Intro-->
+					<tr>
+						<td style="" bgcolor="#ffffff">
+						<!-- Loop Element-->
+						<table width="600" cellpadding="0" cellspacing="0" bgcolor="#ffffff" align="center">
+								<tr>
+									<td class="plr-20" style="padding: 30px 10px 30px 10px" bgcolor="#ffffff">
+																<!--#loop#--> <!--#loopitem#--><table border="0" cellpadding="0" cellspacing="0" width="100%">
+          <tbody><tr>
+          <td align="center" valign="top" style="padding: 10px 20px; border: 0px;" data-style="background-color:inherit;" class="cr-container editable" data-name="Container">
+          <!--[if (gte mso 9)|(IE)]><table align="center" border="0" cellspacing="0" cellpadding="0" width="600" gc-width-fix=".cr-maxwidth:max-width"><tr><td align="center" valign="top" width="600" gc-width-fix=".cr-maxwidth:max-width"><![endif]-->
+          <table border="0" cellpadding="0" cellspacing="0" width="100%" class="cr-maxwidth editable" style="max-width: 600px; ;;;" data-style="background-color:inherit;border:inherit;" data-name="Inner container">
+          <tbody><tr>
+          <td align="left" valign="top" style="font-family: Helvetica, Arial, sans-serif !important; color: inherit; font-size: 15px; line-height: 140%; font-weight: normal; letter-spacing: inherit; ;;;font-family: Verdana, Arial, Helvetica, sans-serif;" data-style="font-family:inherit !important;color:inherit;line-height:inherit;letter-spacing:inherit;padding:0px;" class="cr-text editable" data-name="Text">
+          <!--#html#--><div align="left">
+			  {% block content %}
+				  <p class="false"><span style="font-size: 16px;"><strong>Vielen Dank für Ihre Anfrage!</strong></span></p>
+				  <p class="false">&nbsp;</p>
+				  <p class="false">Wir haben Ihre Nachricht erhalten und werden uns in Kürze bei Ihnen melden. Unsere Vertriebsmitarbeiter sind bestrebt, Ihnen schnellstmöglich weiterzuhelfen und Ihnen die gewünschten Informationen bereitzustellen.<br class="false"><br class="false">Wir schätzen Ihr Interesse an unseren Produkten und Services und freuen uns darauf, Ihnen bei Ihren Anliegen behilflich sein zu können. Falls Sie in der Zwischenzeit weitere Fragen haben, zögern Sie bitte nicht, uns zu kontaktieren.</p>
+			  {% endblock %}
+<p class="false">&nbsp;</p>
+{% block farewell %}
+{% endblock %}
+          </div><!--#/html#-->
+          </td>
+          </tr>
+          </tbody></table>
+          <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+          </td>
+          </tr>
+          </tbody></table><!--#/loopitem#-->  <!--#/loop#-->
+									</td>
+								</tr>
+
+						</table>
+						<!--Produkt Element-->
+
+						</td>
+					</tr>
+					<!-- Main Content-->
+					<tr>
+						<td style="padding-top:30px;" align="center" >
+							<table width="100%" cellpadding="0" cellspacing="0" align="center">
+								<!-- section footer-->
+
+
+								<tr>
+									<td align="center"
+										style="padding: 10px 0 20px 0px; font:14px/18px Verdana,Arial, Helvetica, sans-serif; color:#ffffff; font-family: Verdana, Arial,Helvetica, sans-serif;letter-spacing:-.2px;">
+
+										<table border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td valign="middle" style="padding-left: 10px; font-family: Verdana, Arial, Helvetica, sans-serif;">
+
+												  <p style="margin:0px 0 0 0;font-size:12px;text-align:center;">PARAT Solutions GmbH - Gewerbegebiet Manzing 9 - D-94065 Waldkirchen</p>
+											  <p style="margin:0px 0 0 0;font-size:12px;text-align:center;"><a href="mailto:info@parat.de">info@parat.de</a> - <a href="https://www.parat.de">www.parat.de</a></p></td>
+											</tr>
+										</table>
+
+									</td>
+								</tr>
+								<!-- section footer-->
+
+
+							</table>
+						</td>
+					</tr>
+
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+
+</html>

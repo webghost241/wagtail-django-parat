@@ -1,0 +1,41 @@
+{% load i18n l10n %}
+{% load wagtailcore_tags wagtailimages_tags  %}
+
+<section id="solutions__overview" class="pb-8">
+	<div class="container">
+		<div id="solutions__swiper" class="row">
+			<div class="col col-lg-11 offset-lg-1 mb-5">
+				<header>
+					<h6 class="preheadline">{% translate "Solutions" %}</h6>
+					<h2 class="headline mt-2">{% translate "Im Überblick" %}</h2>
+				</header>
+			</div>
+			<div class="swiper-container">
+				<div class="swiper">
+					<div class="swiper-wrapper">
+						{% for solution in solutions %}
+							<a href="{{ solution.url }}" class="swiper-slide">
+								<div class="card">
+									{% image solution.header_image height-288 as card_image %}
+									<div class="card-img-top" style="background-image:url({{card_image.url}}); {{ image.background_position_style }}"></div>
+									<div class="card-body">
+										<h6 class="preheadline-card">{{ solution.title }}</h6>
+										<h4 class="card-title">{{ solution.introduction_subheadline }}</h4>
+										<div class="card-text">
+											{{ solution.introduction_text | richtext | truncatechars_html:90 }}
+										</div>
+									</div>
+									<div class="card-footer">
+										<span class="card-link">{% translate "Mehr erfahren" %}</span>
+									</div>
+								</div>
+							</a>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="swiper-button-prev"><i class="bi bi-chevron-left"></i></div>
+				<div class="swiper-button-next"><i class="bi bi-chevron-right"></i></div>
+			</div>
+		</div>
+	</div>
+</section>

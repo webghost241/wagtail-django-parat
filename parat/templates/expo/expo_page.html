@@ -1,0 +1,89 @@
+{% extends "core/standard_page.html" %}
+{% load i18n l10n %}
+{% load query_transform %}
+{% load wagtailimages_tags %}
+{% load breadcrumbs url_extras %}
+{# Expo section	#}
+{% block after_body_blocks %}
+	<section id="expo__list" class="pb-8">
+		<div class="container">
+			<div class="row d-flex justify-content-center">
+				<div class="col-lg-6 mt-5">
+					<div class="filter-buttons">
+						{% for id, label in filter.form.fields.c.choices %}
+							<a up-follow up-scroll="#expo__list" href="{{ request.path }}?{% query_transform c=id %}" type="button"
+							   class="btn {% if c_chosen|slugify == id|slugify or not c_chosen and not id %} btn-primary {% else %} btn-secondary {% endif %} rounded-pill">{{ label }}</a>
+						{% endfor %}
+					</div>
+
+					{# expo list #}
+					<div>
+						{% for month, expo_list in months_expo_dict.items %}
+							<div class="my-4 mt-5">
+								<h3 class="my-4">{{ month }} </h3>
+								{% for expo in expo_list %}
+									<div class="card shadow mb-4">
+										<div class="row g-0 align-items-center">
+											<div class="col-lg-6 text-align-center">
+												<div class="card-img">
+													{% image expo.image height-200 as expo_image %}
+													<img src="{{ expo_image.url }}" class="img-fluid"
+														 alt="{{ expo_image.alt }}">
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="card-body">
+													<h4 class="card-title">{{ expo.title }}</h4>
+													<ul class="list-unstyled">
+														<li>
+															<i class="bi bi-calendar-event me-1"></i> {{ expo.formatted_date }}
+														</li>
+														<li>
+															<i class="bi bi-building me-1"></i> {{ expo.city }}
+														</li>
+														<li>
+															<i class="bi bi-pin-map me-1"></i> {{ expo.venue_location }}
+														</li>
+														<li>
+															<i class="bi bi-tag me-1"></i> {{ expo.categories.all|join:', ' }}
+														</li>
+														<li class="d-flex align-items-start">
+															<i class="bi bi-box-arrow-up-right me-2"></i>
+															<a href="{{ expo.url }}" target="_blank">
+																{% if expo.url_label %}
+																	{{ expo.url_label }}
+																{% else %}
+																	{{ expo.url | url_to_fqdn }}
+																{% endif %}
+															</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+								{% endfor %}
+							</div>
+						{% empty %}
+							<h3 class="my-4">
+								{% translate "Neue Messeauftritte in Planung" %}
+							</h3>
+							{% blocktranslate trimmed %}
+							<p>
+								Aktuell stehen keine bevorstehenden Messetermine fest. Aber PARAT ist fleißig dabei, die nächsten Messeauftritte vorzubereiten.
+							</p>
+							<p>
+								Ob Branchentreffs oder internationale Leitmessen – wir freuen uns darauf, in Kürze neue Gelegenheiten zu schaffen, bei denen wir Ihnen unsere innovativen Lösungen persönlich präsentieren können.
+							</p>
+							<p>
+								Schauen Sie bald wieder vorbei und bleiben Sie mit uns auf Entdeckungsreise neuester Produkte und spannender Entwicklungen!
+							</p>
+							{% endblocktranslate %}
+						{% endfor %}
+					</div>
+					{% include "includes/paginator.html" with pagination_object=pagination_object %}
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

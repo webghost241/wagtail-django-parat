@@ -1,0 +1,228 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+DC="${DC:-exec}"
+
+export COMPOSE_FILE=docker/docker-compose.yml
+
+# If we're running in CI we need to disable TTY allocation for docker-compose
+# commands that enable it by default, such as exec and run.
+TTY=""
+if [[ ! -t 1 ]]; then
+  TTY="-T"
+fi
+
+# -----------------------------------------------------------------------------
+# Helper functions start with _ and aren't listed in this script's help menu.
+# -----------------------------------------------------------------------------
+
+function _dc {
+  docker-compose "${DC}" ${TTY} "${@}"
+}
+
+function _build_run_down {
+  docker-compose build
+  docker-compose run ${TTY} "${@}"
+  docker-compose down
+}
+
+# -----------------------------------------------------------------------------
+
+function compose {
+  # run any docker-compose command
+  docker-compose "${@}"
+}
+
+function build {
+  docker-compose build "${@}"
+}
+
+function cmd {
+  # Run any command you want in the django container
+  _dc django "${@}"
+}
+
+function django {
+  # Run any Django commands
+  cmd ./manage.py "${@}"
+}
+
+function up {
+  docker-compose up "${@}"
+}
+
+function logs {
+  docker-compose logs -f "${@}"
+}
+
+function lint:dockerfile {
+  # Lint Dockerfile
+  docker container run --rm -i \
+    hadolint/hadolint hadolint --ignore DL3008 "${@}" - < docker/Dockerfile
+}
+
+function lint:templates {
+  # Lint templates
+  cmd djlint .
+}
+
+function lint {
+  # Lint Python code
+  cmd flake8 "${@}"
+}
+
+function format {
+  # Format Python code
+  cmd black . "${@}"
+}
+
+function format:templates {
+  # Lint templates
+  cmd djlint . --reformat
+}
+
+function format:templates:check {
+  # Lint templates
+  cmd djlint . --check
+}
+
+function test {
+  # Run test suite
+  cmd pytest --ds=config.settings "${@}"
+}
+
+function test:tap {
+  cmd pytest --ds=config.settings --tap "${@}"
+}
+
+function test:coverage {
+  # Get test coverage
+  cmd pytest --ds=config.settings --cov-report term-missing --cov "${@}"
+}
+
+function database:getdump {
+  if [ ! -d tmp ]; then
+    mkdir tmp
+  fi
+
+  ssh hez-fsn1-pgsql01-a.in.sphericalelephant.cloud \
+    sudo -u postgres pg_dump -Fc parat > tmp/parat.dump
+  ssh hez-fsn1-pgsql01-a.in.sphericalelephant.cloud \
+    sudo -u postgres pg_dump parat > tmp/parat.sql
+}
+
+function database:restore {
+  if [ ! -f tmp/parat.dump ]; then
+    echo "parat.dump missing. please run ./run database:getdump beforehand"
+    exit 1
+  fi
+
+  docker-compose rm -sf postgres
+  docker volume rm parat_parat_postgres_data
+  docker-compose up -d postgres
+}
+
+function database:migrate {
+  # Run django migrations
+  django makemigrations "$@"
+  django migrate "$@"
+}
+
+function translations {
+  # Run django migrations
+  l=$(cmd env DJANGO_SETTINGS_MODULE=config.settings python3 -c 'from django.conf import settings; print(" ".join(map(lambda l: "-l " + l[0], settings.LANGUAGES)))')
+  django makemessages --no-location --exclude venv $l "$@"
+  django compilemessages --exclude venv
+}
+
+function shell {
+  # Start a shell session in the django container
+  cmd bash "${@}"
+}
+
+function sync:media {
+  rsync -avPz --delete hez-fsn1-storage01.in.sphericalelephant.cloud:/srv/nfs/parat-production-parat/ media/
+}
+
+function sync {
+  ./run database:getdump
+  ./run database:restore
+  ./run sync:media
+}
+
+function psql {
+  # Connect to PostgreSQL
+  # shellcheck disable=SC1091
+  . docker/.env
+ _dc postgres psql "${DJANGO_DATABASE_URL}" "${@}"
+}
+
+function redis-cli {
+  # Connect to Redis
+  _dc redis redis-cli "${@}"
+}
+
+#function clean {
+#  # Remove cache and other machine generates files
+#  rm -rf public/*.* public/js public/css public/images public/fonts \
+#    .pytest_cache/ .coverage celerybeat-schedule
+#
+#  touch public/.keep
+#}
+
+function ci:install-deps {
+  # Install Continuous Integration (CI) dependencies
+  sudo apt-get install -y curl shellcheck
+  sudo curl \
+    -L https://raw.githubusercontent.com/nickjj/wait-until/v0.2.0/wait-until \
+    -o /usr/local/bin/wait-until && sudo chmod +x /usr/local/bin/wait-until
+}
+
+function ci:test {
+  # Execute Continuous Integration (CI) pipeline
+  #
+  # It's expected that your CI environment has these tools available:
+  #   - https://github.com/koalaman/shellcheck
+  #   - https://github.com/nickjj/wait-until
+  shellcheck run bin/*
+  lint:dockerfile "${@}"
+
+  cp --no-clobber .env.example .env
+  cp --no-clobber docker-compose.override.yml.example docker-compose.override.yml
+
+  docker-compose build
+  docker-compose up -d
+
+  # shellcheck disable=SC1091
+  . .env
+  wait-until "docker-compose exec -T \
+    -e PGPASSWORD=${POSTGRES_PASSWORD} postgres \
+    psql -U ${POSTGRES_USER} ${POSTGRES_USER} -c 'SELECT 1'"
+
+  lint "${@}"
+  format --check
+  flask db reset --with-testdb
+  test "${@}"
+}
+
+function init {
+    docker run --rm -ti -v ./ui:/home/node/ui -w /home/node/ui -u node docker.io/node:18-slim npm i --package-lock-only
+    ./run build
+    ./run up setup
+    ./run up -d
+    ./run django createsuperuser
+    ./run compose stop
+}
+
+function help {
+  printf "%s <task> [args]\n\nTasks:\n" "${0}"
+
+  compgen -A function | grep -v "^_" | cat -n
+
+  printf "\nExtended help:\n  Each task has comments for general usage\n"
+}
+
+# This idea is heavily inspired by: https://github.com/adriancooney/Taskfile
+TIMEFORMAT=$'\nTask completed in %3lR'
+time "${@:-help}"

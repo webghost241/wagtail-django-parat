@@ -1,0 +1,42 @@
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+<script async defer src="https://cdn.captchafox.com/api.js"></script>
+
+{# Modal Button #}
+<div class="relative sticky-bottom">
+	<div class="contact-modal--activator">
+		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contactModal">
+			<i class="bi bi-chat-right-text me-2"></i>
+			{% translate 'Kontakt' %}
+		</button>
+	</div>
+</div>
+
+{# Modal #}
+<div class="modal fade text-body" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="d-flex justify-content-end">
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="mb-4">
+					<h5 class="h5"
+						id="contactModalLabel">{% translate 'Kontaktieren Sie unseren Vertrieb' %}</h5>
+					{% blocktranslate trimmed %}
+					Sie erreichen uns unter <a href="tel:+49 8581 9992-0">+49 8581 99992-0</a> oder
+					über dieses Formular. Wir freuen uns auf Ihre Kontaktanfrage.
+					{% endblocktranslate %}
+				</div>
+				<form id="contact-form" method="post" up-submit>
+					{% crispy form %}
+					<div class="d-flex flex-column justify-content-end">
+						<div class="captchafox" data-sitekey="sk_o843PqLComM7GhbXFoW7GkG9aqoB4" data-mode="hidden"></div>
+						<button type="submit" id="captchafox-submit-button" class="btn btn-primary my-2">{% translate 'Anfrage senden' %}</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

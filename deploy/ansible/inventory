@@ -1,0 +1,12 @@
+[production]
+production01 ansible_host=hez-fsn1-node05.sphericalelephant.com
+
+[production:vars]
+stage=production
+
+
+[staging]
+staging01 ansible_host=hez-fsn1-node05.sphericalelephant.com stage=staging
+
+[staging:vars]
+stage=staging

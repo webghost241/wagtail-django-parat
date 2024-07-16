@@ -1,0 +1,147 @@
+.pt-navbar {
+  --bs-body-font-weight: 700;
+  --bs-navbar-padding-y: 0;
+  --bs-nav-link-font-size: 1.375rem;
+  background-color: $primary;
+
+  .navbar-toggler {
+	border: 0;
+  }
+
+  .dropdown-toggle::after {
+	display: none;
+  }
+
+  .nav-link {
+	--bs-nav-link-font-weight: 700;
+	--bs-navbar-nav-link-padding-x: 1.5rem;
+	--bs-nav-link-padding-y: 2rem;
+
+	border-top: 5px solid $primary;
+	border-bottom: 5px solid $primary;
+
+	&:hover {
+	  border-bottom: 5px solid rgba(0, 0, 0, 0.3);
+	}
+  }
+
+  .dropdown-menu {
+	--bs-dropdown-bg: #000000;
+	--bs-dropdown-color: #ffffff;
+	--bs-dropdown-link-color: #ffffff;
+	--bs-dropdown-link-hover-bg: #{$primary};
+	--bs-dropdown-link-hover-color: #ffffff;
+	--bs-dropdown-spacer: 0;
+	--bs-dropdown-border-width: 0;
+	--bs-dropdown-font-size: 1.375rem;
+	//width: 100%;
+	min-width: 100%;
+
+
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+	border-bottom-right-radius: var(--bs-border-radius-xl) !important;
+	border-bottom-left-radius: var(--bs-border-radius-xl) !important;
+
+	.dropdown-item {
+	  transition: background-color 0.3s;
+	  padding-left: 2rem;
+
+	  &::after {
+		position: relative;
+		content: ' >';
+		transition: left 0.2s;
+		left: 0.25rem;
+	  }
+
+	  &:hover::after {
+		left: 0.5rem;
+	  }
+	}
+
+  }
+  .fake-dropdown-menu {
+	////width: 100%;
+	//min-width: 100%;
+	//border-top-right-radius: 0;
+	//border-top-left-radius: 0;
+	//border-bottom-right-radius: var(--bs-border-radius-xl) !important;
+	//border-bottom-left-radius: var(--bs-border-radius-xl) !important;
+	list-style-type: none;
+	.dropdown-item {
+	  transition: background-color 0.3s;
+	  font-size: 1.375rem;
+
+	  &::after {
+		position: relative;
+		content: ' >';
+		transition: left 0.2s;
+		left: 0.25rem;
+	  }
+
+	  &:hover::after {
+		left: 0.5rem;
+	  }
+	}
+  }
+
+}
+
+@include media-breakpoint-up(lg) {
+  .pt-navbar {
+	.dropdown:hover>.dropdown-menu {
+	  display: block;
+	}
+
+	.dropdown>.dropdown-toggle:active {
+	  /* Without this, clicking will make it sticky */
+	  pointer-events: none;
+	}
+  }
+}
+
+
+@include media-breakpoint-down(lg) {
+  .navbar-brand {
+	padding-right: 1rem;
+	padding-left: 1rem;
+	--bs-navbar-brand-padding-y: 1.75rem;
+  }
+
+}
+
+@include media-breakpoint-down(md) {
+  .pt-navbar {
+	--bs-body-font-weight: 500;
+
+	.container {
+	  padding: 0;
+	}
+
+	.navbar-collapse {
+	  padding: 1rem;
+	  background-color: $dark;
+	  min-height: 80vh;
+	}
+
+	.nav-link {
+	  --bs-nav-link-font-weight: 500;
+	  --bs-nav-link-padding-y: 0.75rem;
+	  border-width: 0;
+
+	  &:hover {
+		border-width: 0;
+	  }
+	}
+  }
+}
+
+#language-selector {
+  @extend .flex-row;
+  @extend .me-auto;
+  @extend .mb-2;
+  @extend .mb-lg-0;
+  @extend .navbar-nav;
+  @extend .d-none;
+  @extend .d-lg-block;
+}

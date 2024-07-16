@@ -1,0 +1,124 @@
+{% load page_type_url %}
+{% load i18n static %}
+{% load wagtailcore_tags %}
+{% load menu_tags %}
+<header class="pt-navbar navbar navbar-expand-lg navbar-dark">
+	<nav class="container">
+		<a class="navbar-brand" href="/">
+			<img width="200" src="{% static "images/logo.svg" %}" alt="PARAT Logo" class="me-5" />
+		</a>
+		<button class="navbar-toggler"
+				type="button"
+				data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent"
+				aria-expanded="false"
+				aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mb-2 mb-lg-0">
+				{% for item in menu_items %}
+					{% if item.has_children_in_menu %}
+						<li class="nav-item dropdown d-none d-md-block">
+							<a class="nav-link dropdown-toggle" href="{% if item.link_page.localized.url %}{{ item.link_page.localized.url }}{% else %}{{ item.href }}{% endif %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								{% if item.link_page.localized.title %}
+									{{ item.link_page.localized.title }}
+								{% else %}
+									{{ item.text }}
+								{% endif %}
+								<i class="mx-2 bi bi-chevron-down"></i>
+							</a>
+							<ul class="dropdown-menu py-3" aria-labelledby="navbarDropdown">
+								{% sub_menu item %}
+							</ul>
+						</li>
+						<li class="nav-item d-block d-md-none">
+							<a class="nav-link" href="{% if item.link_page.localized.url %}{{ item.link_page.localized.url }}{% else %}{{ item.href }}{% endif %}" aria-expanded="false">
+								{% if item.link_page.localized.title %}
+									{{ item.link_page.localized.title }}
+								{% else %}
+									{{ item.text }}
+								{% endif %}
+							</a>
+							<ul class="nav-item fake-dropdown-menu text-white py-3" aria-labelledby="navbarDropdown">
+								{% sub_menu item %}
+							</ul>
+						</li>
+					{% else %}
+						<li class="nav-item">
+							<a class="nav-link" href="{% menu_item_link item page %}" {% if item.link_open_new_tab %}target="_new"{% endif %}>
+                                {% if item.is_external_link %}
+									{% if page.locale.language_code == "en" %}
+										{{ item.link_text_en }}
+									{% else %}
+										{{ item.text }}
+									{% endif %}
+								{% else %}
+									{% if item.link_page.localized.title %}
+										{{ item.link_page.localized.title }}
+									{% else %}
+										{{ item.text }}
+									{% endif %}
+								{% endif %}
+							</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+			{% page_type_url 'contact' 'ContactPage' as contact_page %}
+			<div class="navbar-Kontakt-item nav-item d-none">
+				<a class="nav-link" href="{{ contact_page.url }}">{% translate 'Kontakt' %}</a>
+			</div>
+			<ul id="language-selector-mobileView" class="d-block d-lg-none navbar-nav navbar-dark">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle"
+						data-bs-toggle="dropdown"
+						aria-expanded="false"
+						data-bs-display="static">
+						<i class="bi-globe"></i> {{ page.locale.language_code |upper }}
+						<i class="mx-2 bi bi-chevron-down"></i>
+					</a>
+					{% if page %}
+
+					<ul class="dropdown-menu dropdown-menu-end py-3" data-bs-popper="static">
+						{% for translation in page.get_translations.live %}
+							{% get_language_info for translation.locale.language_code as lang %}
+							<li>
+								<a href="{% pageurl translation %}" class="dropdown-item" rel="alternate" hreflang="{{ lang.code }}">{{ lang.code |upper }} {{ lang.name_local }}</a>
+							</li>
+						{% endfor %}
+					</ul>
+					{% endif %}
+				</li>
+			</ul>
+		</div>
+		{% if page.locale.language_code %}
+			<ul id="language-selector" class="d-none d-lg-block">
+				<li class="nav-item dropdown">
+					<button class="nav-link dropdown-toggle"
+							data-bs-toggle="dropdown"
+							aria-expanded="false"
+							data-bs-display="static">
+						<i class="bi-globe"></i> {{ page.locale.language_code |upper }}
+						<i class="bi bi-chevron-down"></i>
+					</button>
+					{% if page and page.get_translations.live %}
+						<ul class="dropdown-menu dropdown-menu-end py-3" data-bs-popper="static">
+							{% for translation in page.get_translations.live %}
+								<li >
+									{% get_language_info for translation.locale.language_code as lang %}
+									<a href="{% pageurl translation %}" class="dropdown-item py-md-3" rel="alternate" hreflang="{{ lang.code }}">
+										{{ lang.code |upper }}
+										{{ lang.name_local }}
+									</a>
+								</li>
+							{% endfor %}
+						</ul>
+					{% endif %}
+				</li>
+			</ul>
+		{% endif %}
+	</nav>
+</header>

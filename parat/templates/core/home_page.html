@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+	{% image page.header_image height-1000 as header_image %}
+	<header class="hero" style="background-image: url('{{header_image.url}}'); {{ header_image.background_position_style }}" data-bs-theme="dark">
+		<div class="gradient-overlay"></div>
+		<div class="container p-4 d-flex flex-wrap justify-content-start align-items-end h-100">
+			<div class="homePage-header-container">
+				<p class="preheadline">{{ page.subheading }}</p>
+				<h1 class="mt-2 mb-5 display-1">{{ page.heading |linebreaks }}</h1>
+			</div>
+		</div>
+	</header>
+    {% for block in page.body %}
+			<section class="section-{{ block.block_type }}">
+			{% if block.block_type == "split_row_block" or block.block_type == "hero" %}
+				<div class="">
+				{% include_block block %}
+				</div>
+				{%  else %}
+				<div class="container py-4">
+					{% include_block block %}
+				</div>
+				{% endif %}
+			</section>
+	{% endfor %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "core/standard_page.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load i18n %}
+{% block content %}
+	{% block header %}
+		{{ block.super }}
+	{% endblock %}
+	{% block body_blocks %}
+		{{ block.super }}
+	{% endblock %}
+	{% block after_body_blocks %}
+		{% if page.solutions %}
+			{% include "includes/solutions_slider.html" with solutions=page.solutions %}
+		{% endif %}
+		{% include "includes/contact_modal.html" %}
+	{% endblock %}
+{% endblock %}

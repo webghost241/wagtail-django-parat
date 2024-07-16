@@ -1,0 +1,416 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-03 10:52+0000\n"
+"PO-Revision-Date: 2024-01-11 20:37+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, python-format
+msgid ""
+"Ich stimme der Datenverarbeitung gemäß unserer <a target=\"_new\" "
+"href=\"%(url)s\">Datenschutzerklärung</a> zu"
+msgstr ""
+"I agree to the data processing in accordance with our <a target=\"_new\" "
+"href=\"%(url)s\">privacy policy</a> "
+
+msgid "Name"
+msgstr ""
+
+msgid "Unternehmen"
+msgstr "Company name"
+
+msgid "Rufnummer"
+msgstr "Phone number"
+
+msgid "E-Mail-Adresse"
+msgstr "E-mail address"
+
+msgid "Nachricht"
+msgstr "Your message"
+
+msgid "E-Mail-Addresse"
+msgstr "E-mail address"
+
+msgid "DSGVO"
+msgstr ""
+
+msgid "Vielen Dank für ihre Anfrage"
+msgstr "Thank you for your request"
+
+#, python-format
+msgid "Neue Kontaktanfrage von %(name)s, %(company)s"
+msgstr "New contact from %(name)s, %(company)s"
+
+msgid "Kontaktinformationen"
+msgstr "Contact Information"
+
+msgid "Formularkopf"
+msgstr ""
+
+#, fuzzy
+#| msgid "Ihre Nachricht wurde erfolgreich versendet"
+msgid ""
+"Ihre Nachricht wurde erfolgreich versendet / Your Message was successfully "
+"sent"
+msgstr "Your Message was successfully sent"
+
+msgid "Alle Kategorien"
+msgstr "All categories"
+
+msgid "Alle Sprachen"
+msgstr "All languages"
+
+msgid "Label Deutsch"
+msgstr ""
+
+msgid "Label Englisch"
+msgstr ""
+
+msgid "Ordering"
+msgstr ""
+
+msgid "Label"
+msgstr ""
+
+msgid "Sprachkürzel"
+msgstr ""
+
+msgid "z.B. DE"
+msgstr "eg. DE"
+
+msgid "Gruppe"
+msgstr "Group"
+
+msgid "Sprachen"
+msgstr "Languages"
+
+msgid "Titel"
+msgstr "Title"
+
+msgid "Beschreibung"
+msgstr "Description"
+
+msgid "Downloads"
+msgstr "Downloads"
+
+msgid "Kategorien"
+msgstr "Categories"
+
+msgid "Startdatum"
+msgstr "Start date"
+
+msgid "Enddatum"
+msgstr "End date"
+
+msgid "Stadt"
+msgstr "City"
+
+msgid "Standort am Venue"
+msgstr ""
+
+msgid "URL"
+msgstr ""
+
+msgid "URL Label"
+msgstr ""
+
+msgid "Messe-Kategorien"
+msgstr ""
+
+msgid "Messen"
+msgstr ""
+
+msgid "Seite"
+msgstr ""
+
+msgid "Url"
+msgstr ""
+
+msgid "Items"
+msgstr ""
+
+msgid "Spalte"
+msgstr ""
+
+msgid "Bootstrap icon name"
+msgstr ""
+
+msgid "Entweder Seite oder Url müssen gesetzt werden"
+msgstr ""
+
+msgid "Footer"
+msgstr ""
+
+msgid "Kurzbeschreibung für Listenansicht"
+msgstr ""
+
+#, fuzzy
+#| msgid "Titel"
+msgid "Subtitel"
+msgstr "Title"
+
+msgid "Anhänge"
+msgstr "Attachments"
+
+msgid "PARAT"
+msgstr "PARAT"
+
+msgid "PARAT Beitrag"
+msgstr "PARAT Post"
+
+msgid "Dokument"
+msgstr "Document"
+
+#, fuzzy
+#| msgid "Beschreibung"
+msgid "Beschriftung"
+msgstr "Description"
+
+msgid "Parat Blog Page"
+msgstr ""
+
+msgid "Image Slider Block"
+msgstr ""
+
+msgid "Style"
+msgstr ""
+
+msgid "Image Collage Block"
+msgstr ""
+
+msgid "Card-Headline"
+msgstr ""
+
+msgid "Card-Sub-Headline"
+msgstr ""
+
+msgid "Kartentext"
+msgstr ""
+
+msgid "Card Image"
+msgstr ""
+
+msgid "404: Seite nicht gefunden"
+msgstr "404: Page not found."
+
+msgid "Verlaufen?"
+msgstr "Lost?"
+
+msgid ""
+"Offenbar befindet sich die gesuchte Seite nicht im Portfolio unserer "
+"Struktur. Aber kein Grund zur Sorge: Lassen Sie uns gemeinsam den Weg "
+"zurückfinden."
+msgstr ""
+"Apparently the page you are looking for is not in our portfolio. But there's "
+"no need to worry: let's find our way back together."
+
+msgid ""
+"Verwenden Sie die Navigationsleiste für eine erneute Orientierung oder "
+"kehren Sie zur Startseite zurück, um mehr über unser Unternehmen und unsere "
+"Projektlösungen zu erfahren."
+msgstr ""
+"Use the navigation bar to find your way again or return to the home page to "
+"find out more about our company and our project solutions."
+
+msgid "Wir stehen Ihnen zur Seite, um Sie sicher ans Ziel zu führen."
+msgstr "We are at your side to guide you safely to your destination."
+
+msgid "Ihr PARAT-Team"
+msgstr "Your PARAT team"
+
+msgid "Previous"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "Deine Karrierechance bei PARAT"
+msgstr "Your career opportunity at PARAT"
+
+msgid ""
+"<p> Derzeit sind alle Positionen in unserem Team besetzt, aber das bedeutet "
+"nicht, dass wir nicht auf der Suche nach Talenten wie Dir sind! PARAT ist "
+"stets interessiert an motivierten und engagierten Fachkräften, die unser "
+"Unternehmen bereichern wollen. </p> <p> Zögere nicht, uns deine "
+"Initiativbewerbung zuzusenden oder besuche unsere Karriereseite regelmäßig, "
+"um zukünftige Möglichkeiten nicht zu verpassen.<br> Deine Chance bei PARAT "
+"könnte nur einen Klick entfernt sein! </p>"
+msgstr ""
+"<p>All positions in our team are currently filled, but that doesn't mean "
+"we're not looking for talented people like you! PARAT is always interested "
+"in motivated and committed specialists who want to enrich our company.</"
+"p><p>Don't hesitate to send us your unsolicited application or visit our "
+"careers page regularly to make sure you don't miss out on future "
+"opportunities.<br>Your chance at PARAT could be just a click away!</p>"
+
+msgid "Initiativbewerbung"
+msgstr "Unsolicited application"
+
+msgid "Anfrage senden"
+msgstr "Send request"
+
+msgid "Technisch erforderlich"
+msgstr "Technically required"
+
+msgid "Statistiken"
+msgstr "Statistics"
+
+msgid "Akzeptiert"
+msgstr "Accepted"
+
+msgid "Akzeptieren"
+msgstr "Accept"
+
+msgid "Abgelehnt"
+msgstr "Denied"
+
+msgid "Ablehnen"
+msgstr "Deny"
+
+#, python-format
+msgid "Die Gruppe %(group)s beinhaltet folgende Dienste"
+msgstr ""
+
+msgid "Sitzung"
+msgstr "Session"
+
+msgid ""
+"Diese Website verwendet Cookies, um eine bestmögliche Erfahrung bieten zu "
+"können."
+msgstr "This website uses cookies to ensure the best experience possible."
+
+msgid "Mehr Informationen"
+msgstr "More information"
+
+msgid "Kategorie"
+msgstr "Category"
+
+msgid "Sprache"
+msgstr "Language"
+
+msgid "Download"
+msgstr ""
+
+msgid "Neue Messeauftritte in Planung"
+msgstr "New trade fair appearances in planning"
+
+msgid ""
+"<p> Aktuell stehen keine bevorstehenden Messetermine fest. Aber PARAT ist "
+"fleißig dabei, die nächsten Messeauftritte vorzubereiten. </p> <p> Ob "
+"Branchentreffs oder internationale Leitmessen – wir freuen uns darauf, in "
+"Kürze neue Gelegenheiten zu schaffen, bei denen wir Ihnen unsere innovativen "
+"Lösungen persönlich präsentieren können. </p> <p> Schauen Sie bald wieder "
+"vorbei und bleiben Sie mit uns auf Entdeckungsreise neuester Produkte und "
+"spannender Entwicklungen! </p>"
+msgstr ""
+"<p>There are currently no upcoming trade fair dates. But PARAT is busy "
+"preparing its next trade fair appearances.</p><p>Whether industry get-"
+"togethers or leading international trade fairs - we are looking forward to "
+"creating new opportunities in the near future where we can present our "
+"innovative solutions to you in person.</p><p>Come back soon and join us on a "
+"voyage of discovery of the latest products and exciting developments!</p>"
+
+msgid "Kontakt"
+msgstr "Contact"
+
+msgid "Kontaktieren Sie unseren Vertrieb"
+msgstr "Contact our sales team"
+
+msgid ""
+"Sie erreichen uns unter <a href=\"tel:+49 8581 9992-0\">+49 8581 99992-0</a> "
+"oder über dieses Formular. Wir freuen uns auf Ihre Kontaktanfrage."
+msgstr ""
+"You can reach us at <a href=\"tel:+49 8581 99992-0\">+49 8581 99992-0</a> or "
+"using this form. We look forward to your contact request."
+
+msgid "Konfigurieren"
+msgstr "Configure"
+
+msgid "Alle Cookies akzeptieren"
+msgstr "Accept all cookies"
+
+msgid "Solutions"
+msgstr ""
+
+msgid "Im Überblick"
+msgstr "An overview"
+
+msgid "Mehr erfahren"
+msgstr "Learn more"
+
+msgid "News"
+msgstr "news"
+
+msgid "Keine News vorhanden!"
+msgstr "No news yet!"
+
+msgid "Beitrag teilen"
+msgstr "Share post"
+
+msgid "Entries for"
+msgstr ""
+
+msgid "Continue reading"
+msgstr ""
+
+msgid "No results found."
+msgstr ""
+
+msgid "Return"
+msgstr ""
+
+msgid "Related Entries"
+msgstr ""
+
+msgid "No entry archives yet"
+msgstr ""
+
+msgid "No categories yet"
+msgstr ""
+
+msgid "No entries yet"
+msgstr ""
+
+msgid "No tags yet"
+msgstr ""
+
+msgid "Einsatzgebiete"
+msgstr "Fields of application"
+
+msgid "Folge uns"
+msgstr "Follow us"
+
+#~ msgid "Neue Kontaktanfrage"
+#~ msgstr "New contact request"
+
+#~ msgid "Mehr Erfahren"
+#~ msgstr "Learn more"
+
+#, fuzzy
+#~| msgid "E-Mail-Addresse"
+#~ msgid "Email address"
+#~ msgstr "E-mail address"
+
+#, fuzzy
+#~| msgid "Stadt"
+#~ msgid "Sat"
+#~ msgstr "City"
+
+#~ msgid "global.page.404_title"
+#~ msgstr "404 Page not found."
+
+#~ msgid "global.page.404_content"
+#~ msgstr "Page not found."

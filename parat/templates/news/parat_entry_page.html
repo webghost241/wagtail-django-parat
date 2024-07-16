@@ -1,0 +1,95 @@
+{% extends "puput/base.html" %}
+{% load i18n wagtailcore_tags wagtailimages_tags puput_tags social_share url_extras %}
+{% block social_share %}
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Spherical Elephant GmbH">
+    {% image self.header_image fill-800x450 as share_image %}
+    <meta property="og:title" content="{% firstof self.seo_title self.title %}" />
+    <meta property="og:description"
+          content="{% firstof self.search_description self.excerpt|striptags self.body|striptags|truncatewords:20 %}" />
+    <meta property="og:url" content="{% canonical_url entry=self %}" />
+    {% if self.header_image %}
+        <meta property="og:image" content="{% image_url share_image.url %}" />
+        <meta property="og:image:width" content="800" />
+        <meta property="og:image:height" content="450" />
+        <meta name="twitter:image" content="{% image_url share_image.url %}" />
+    {% endif %}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title"
+          content="{% firstof self.seo_title self.title %}" />
+    <meta name="twitter:description"
+          content="{% firstof self.search_description self.excerpt|striptags self.body|striptags|truncatewords:20 %}" />
+    <meta name="description"
+          content="{% firstof self.search_description self.excerpt|striptags self.body|striptags|truncatewords:20 %}" />
+{% endblock social_share %}
+{% block content %}
+    <article class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                {# Manually adding breadcrumbs instead of using {% breadcrumbs %} because we need to be independant from header images#}
+                <div class="my-1 my-md-4">
+                    <nav aria-label="breadcrumb">
+                        {% if page.get_ancestors|length > 1 %}
+                            <ol class="breadcrumb d-flex align-items-center mt-3 mb-5">
+                                {% for p in page.get_ancestors %}
+                                    {% if p.is_root == False %}
+                                        {% if forloop.counter0 == 1 or forloop.counter0 > page.get_ancestors.count|add:"-2" %}
+                                            <li class="breadcrumb-item">
+                                                <a href="{{ p.url }}">{{ p.title }}</a>
+                                            </li>
+                                        {% else %}
+                                            <li class="breadcrumb-item">...</li>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                                <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
+                            </ol>
+                        {% endif %}
+                    </nav>
+                </div>
+                <h1>{{ self.title }}</h1>
+                <h2>{{ self.subtitle }}</h2>
+                <time>{{ self.date|date:"DATE_FORMAT" }}</time>
+                {% if self.header_image %}
+                    {% image self.header_image fill-790x526 as header_image %}
+                    <div>
+                        <img class="rounded-5 img-fluid my-3 shadow"
+                             alt="{{ self.header_image.title }}"
+                             src="{{ header_image.url }}">
+                    </div>
+                {% endif %}
+                <div class="d-flex flex-column article-content {% if self.header_image == None %}mt-4{% endif %}">
+                    {{ self.body|richtext }}
+                </div>
+                <div class="mb-5 mt-2">
+                    <ul class="list-unstyled">
+                        {% for document in download_documents %}
+                            <li>
+                                <span class="download">
+                                    <a class="arrowed-link" href="{{ document.document.url }}" download>{{ document.label }}</a>
+                                </span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <span class="text-start mt-2 mb-6 badge d-flex justify-start align-items-center gap-3 gap-xxl-5 px-5 flex-column flex-xxl-row rounded-5">
+                    <span class="writing">{% translate "Beitrag teilen" %}</span>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ self.page_url }}"
+                       target="_blank">
+                        <span class="badge rounded-pill">
+                            <i class="bi bi-linkedin px-2"></i>LinkedIn
+                        </span>
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ self.page_url }}"
+                       target="_blank">
+                        <span class="badge rounded-pill">
+                            <i class="bi bi-facebook px-2"></i>Facebook
+                        </span>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </article>
+{% endblock content %}

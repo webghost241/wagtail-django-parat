@@ -1,0 +1,18 @@
+# {{ ansible_managed }}
+COMPOSER_PROJECT_NAME=parat-{{ stage }}
+STAGE={{ stage }}
+
+DJANGO_DATABASE_URL="postgres://parat_{{ stage }}_parat:{{ lookup('gopass', 'sphericalelephant/parat/' + stage + '/database_password') }}@hez-fsn1-pgsql01-a.in.sphericalelephant.com/parat?options=--search_path%3d{{ stage }}-parat"
+DJANGO_SECRET_KEY="{{ lookup('gopass', 'sphericalelephant/parat/' + stage + '/secret_key') }}"
+DJANGO_WAGTAILTRANSFER_SECRET_KEY="{{ lookup('gopass', 'sphericalelephant/parat/' + stage + '/wagtailtransfer_secret_key') }}"
+DJANGO_WAGTAILTRANSFER_STAGE_KEY="{{ lookup('gopass', 'sphericalelephant/parat/' + stage + '/wagtailtransfer_stage_key') }}"
+DJANGO_EMAIL_SERVER="{{ lookup('gopass', 'sphericalelephant/parat/' + stage + '/email_server') }}"
+DJANGO_ENVIRONMENT="{{ stage }}"
+DJANGO_ERROR_EMAILS='["p.sturm@sphericalelephant.com", "m.holczmann@sphericalelephant.com"]'
+DJANGO_FRIENDLY_CAPTCHA_API_KEY="{{ lookup('gopass', 'sphericalelephant/parat/' + stage + '/friendly_captcha_api_key') }}"
+DJANGO_STAGE={{ stage }}
+{% if stage == 'staging' %}
+DJANGO_CSRF_HOSTS='["https://parat-staging-parat.sphericalelephant.cloud", "https://parat-staging-parat.sphericalelephant.com"]'
+{% elif stage == 'production' %}
+DJANGO_CSRF_HOSTS='["https://www.parat.de", "https://parat-production-parat.sphericalelephant.cloud", "https://parat-production-parat.sphericalelephant.com"]'
+{% endif %}

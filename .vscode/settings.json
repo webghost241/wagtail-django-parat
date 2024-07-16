@@ -1,0 +1,71 @@
+{
+	"workbench.editor.enablePreview": true,
+	"editor.bracketPairColorization.enabled": true,
+	"editor.guides.bracketPairs": true,
+	"editor.guides.highlightActiveIndentation": true,
+	"editor.guides.indentation": true,
+	"editor.suggest.preview": true,
+	"editor.wordWrap": "on",
+	"javascript.inlayHints.parameterNames.enabled": "all",
+	"javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+	"typescript.inlayHints.parameterNames.enabled": "all",
+	"cSpell.words": [],
+	"editor.codeActionsOnSave": [
+		"source.organizeImports",
+		"source.fixAll.eslint"
+	],
+	"editor.formatOnSave": true,
+	"files.insertFinalNewline": true,
+	"sqltools.connections": [
+		{
+			"previewLimit": 50,
+			"server": "localhost",
+			"port": 5432,
+			"driver": "PostgreSQL",
+			"name": "project",
+			"group": "Docker Compose: parat",
+			"database": "parat",
+			"username": "parat"
+		}
+	],
+	"[javascript]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features",
+		"editor.tabSize": 2
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"[html][django-html][handlebars][hbs][mustache][jinja][jinja-html][nj][njk][nunjucks][twig]": {
+		"editor.defaultFormatter": "monosans.djlint"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"restructuredtext.languageServer.disabled": true,
+	"gitlab.instanceUrl": "https://gitlab.sphericalelephant.com",
+	"esbonio.sphinx.confDir": "",
+	"files.associations": {
+		"*.nomad": "hcl"
+	},
+	"python.formatting.provider": "none",
+	"python.analysis.extraPaths": [
+		"./parat"
+	],
+	"python.linting.flake8Enabled": true,
+	"python.linting.flake8Args": [
+		"--ignore=E501,W503,W504",
+		"--remove-all-unused-imports",
+	],
+	"python.linting.lintOnSave": true,
+	"python.analysis.diagnosticMode": "workspace",
+	"editor.formatOnPaste": true,
+	"[python]": {
+		"editor.defaultFormatter": "ms-python.black-formatter"
+	},
+	"editor.rulers": [
+		88
+	]
+}

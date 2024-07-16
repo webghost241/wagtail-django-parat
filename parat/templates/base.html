@@ -1,0 +1,130 @@
+{% load footer_tags %}
+{% load static i18n %}
+{% load django_vite %}
+{% load menu_tags %}
+{% load wagtailsettings_tags %}
+{% get_settings as wagtail_settings %}
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Spherical Elephant GmbH">
+	{% include "wagtailseo/meta.html" %}
+	<link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicons/180x180px.png' %}">
+
+	{% block css %}{% endblock %}
+
+	{% block javascript %}{% endblock javascript %}
+	{% vite_hmr_client %}
+	{% block tracking %}
+		{% if wagtail_settings.core.AnalyticsSettings.ga_g_tracking_id %}
+			<template id="analytics-scripts">
+				<script async src="https://www.googletagmanager.com/gtag/js?id={{wagtail_settings.core.AnalyticsSettings.ga_g_tracking_id}}"></script>
+				<script>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', '{{wagtail_settings.core.AnalyticsSettings.ga_g_tracking_id}}');
+				</script>
+			</template>
+		{% endif %}
+	{% endblock tracking %}
+	{% vite_asset "js/main.js" %}
+</head>
+
+<body id="page-{{page.id}}" class="pt-{{page.content_type.model}}">
+	{% include "wagtailseo/struct_data.html" %}
+{% block menu %}
+	{% main_menu %}
+{% endblock %}
+	{# TODO: add login/register links #}
+{# TODO add messages to the correct position #}
+<div id="flash-messages" class="" up-hungry>
+	{% if messages %}
+		{% for message in messages %}
+			{% include "includes/django_message.html" %}
+		{% endfor %}
+	{% endif %}
+</div>
+
+	<main>
+		{% include "includes/cookie_banner.html" %}
+		{% block content %}
+			<div class="container my-4">
+				<p>Use this document as a way to quick start any new project.</p>
+				<div class="row m-4">
+					<div class="col">
+						<h2 class="preheadline">Preheadline</h2>
+						<h1>Headline 1</h1>
+						<h2>Headline 2</h2>
+						<h3>Headline 3</h3>
+						<h4>Headline 4</h4>
+						<h5>Headline 5</h5>
+						<h6>Headline 6</h6>
+					</div>
+
+					<div class="col">
+						<h1 class="display-1">Display 1</h1>
+						<h2 class="display-2">Display 2</h2>
+						<h3 class="display-3">Display 3</h3>
+						<h4 class="display-4">Display 4</h4>
+						<h5 class="display-5">Display 5</h5>
+						<h6 class="display-6">Display 6</h6>
+					</div>
+				</div>
+
+				<div class="col">
+					<h1 class="display-1">Display 1</h1>
+					<h2 class="display-2">Display 2</h2>
+					<h3 class="display-3">Display 3</h3>
+					<h4 class="display-4">Display 4</h4>
+					<h5 class="display-5">Display 5</h5>
+					<h6 class="display-6">Display 6</h6>
+				</div>
+				<h2>Shadows</h2>
+
+				<div class="shadow-none p-3 mb-3 bg-body-tertiary">
+					No shadow
+				</div>
+				<div class="shadow-sm p-3 mb-3 bg-body-tertiary">
+					Small Shadow
+				</div>
+				<div class="shadow p-3 mb-3 bg-body-tertiary">
+					Regular Shadow
+				</div>
+				<div class="shadow-lg p-3 mb-3 bg-body-tertiary">
+					Larger Shadow
+				</div>
+
+				<h2>Buttons</h2>
+				<button type="button" class="btn btn-primary btn-lg">Button Primary</button>
+				<button type="button" class="btn btn-secondary btn-lg">Button Secondary</button>
+				<button type="button" class="btn btn-tertiary btn-lg">Button Tertiary</button>
+
+				<h2>Borders</h2>
+				<span class="m-4 p-3 rounded-2 border">Border</span>
+				<span class="m-4 p-3 rounded-2 border border-5">Border-5</span>
+			</div>
+		{% endblock content %}
+	</main>
+{% block footer %}
+	{% footer_tag %}
+{% endblock footer %}
+
+{% block inline_javascript %}
+            <script>
+				function font() {
+					const endpoint = '/api/font/'
+					var xhr = new XMLHttpRequest();
+					xhr.open("GET", endpoint, true);
+					xhr.send();
+				}
+				font();
+            </script>
+{% endblock inline_javascript %}
+</body>
+</html>

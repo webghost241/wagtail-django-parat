@@ -1,0 +1,46 @@
+version: "3.4"
+
+x-django-common:
+  &django-common
+    env_file: .env
+    image: registry.sphericalelephant.com/parat/parat/parat:${COMPOSE_TAG:-main}
+    restart: unless-stopped
+    volumes:
+      - /data/parat-production/data/media/:/home/app/parat/media
+
+services:
+  django:
+    <<: *django-common
+    healthcheck:
+      test: ['CMD', 'nc', '-z', '-v', 'localhost', '8000']
+      interval: 20s
+      timeout: 60s
+      start_period: 15s
+    expose:
+      - 8000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.parat-production-parat-compress.compress=true"
+      - "traefik.http.routers.parat-production-parat.middlewares=parat-production-parat-compress"
+      - "traefik.http.routers.parat-production-parat.rule=Host(`parat-production-parat.sphericalelephant.com`, `parat-production-parat.sphericalelephant.cloud`, `www.parat.de`)"
+  web:
+    image: registry.sphericalelephant.com/parat/parat/nginx:${COMPOSE_TAG:-main}
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.parat-production-parat-media.rule=Host(`parat-production-parat.sphericalelephant.com`, `parat-production-parat.sphericalelephant.cloud`, `www.parat.de`) && PathPrefix(`/media`)"
+      - "traefik.http.middlewares.parat-production-parat-media-redirects.redirectregex.regex=^https?://.*/(media/\\w{2}/\\w{2}/\\w{2}/\\d+/.*)$$"
+      - "traefik.http.middlewares.parat-production-parat-media-redirects.redirectregex.replacement=https://products.parat.de/$${1}"
+      - "traefik.http.routers.parat-production-parat-media.middlewares=parat-production-parat-media-redirects"
+    volumes:
+      - /data/parat-production/data/media/:/usr/share/nginx/html/media
+
+  # TODO: enable me once cloud deployment is stopped
+  #setup:
+  #  <<: *django-common
+  #  restart: "no"
+  #  entrypoint: ["./manage.py", "migrate"]
+
+networks:
+  web:
+    external: true

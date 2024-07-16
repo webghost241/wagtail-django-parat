@@ -1,0 +1,39 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+{% load url_extras %}
+{% if self.aspect_ratio == "1-1" %}
+    {% image self.image fill-1600x1600-c100 format-webp as self_image %}
+{% else %}
+    {% image self.image	fill-1600x1066-c100 format-webp as self_image %}
+{% endif %}
+<div class="card text-white border-0 bg-transparent">
+    <img src="{{ self_image.url }}"
+         loading="lazy"
+         class="card-img rounded-5 {{ self.shadow }} {% if self.full_width %}col-12{% endif %}"
+         alt="{% if self.attribution %}{{ self.attribution }}{% endif %}" />
+    <div class="rounded-5 card-img-overlay bg-gray-700 d-flex align-items-center justify-content-center flex-column video-image-overlay">
+    </div>
+    <div class="rounded-5 card-img-overlay bg-gray-700 d-flex align-items-center justify-content-center flex-column">
+        {% if self.is_local_video %}
+            <a href="#" class="text-white" data-type="html" data-toggle="lightbox" data-src="
+                <video data-toggle='lightbox'
+                       width='1060'
+                       height='1060'
+                       controls
+                       {% if self.auto_play %}autoplay{% endif %}>
+                    <source src='{{ self.video_url }}' type='video/mp4'>
+                    Your browser does not support the video tag.
+                </video>
+            "><i class="bi bi-play-circle video-image-overlay-icon"></i></a>
+        {% else %}
+            <a href="{% video_url self.video_url %}"
+               data-toggle="lightbox"
+               class="text-white">
+                <i class="bi bi-play-circle video-image-overlay-icon"></i>
+            </a>
+            <p class="text-center fw-bold col-8 video-image-overlay-text">
+                Mit dem Aufruf des Videos erklärst Du dich einverstanden, dass deine Daten an Youtube übermittelt werden und, dass Du die <a href="{% slugurl 'datenschutz' %}">Datenschutzerklärung</a> akzeptierst.
+            </p>
+        {% endif %}
+    </div>
+</div>

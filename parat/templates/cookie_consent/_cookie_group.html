@@ -1,0 +1,75 @@
+{% load i18n %}
+{% load cookie_consent_tags %}
+
+<div class="cookie-group">
+	<div class="cookie-group-title">
+		<h4>
+			{% if cookie_group.varname == "required" %}
+				{% translate "Technisch erforderlich" as group_name %}
+			{% elif cookie_group.name == "Statistics" %}
+				{% translate "Statistiken" as group_name %}
+			{% endif %}
+			{% if group_name %}
+				{{ group_name }}
+			{% else %}
+				{{ cookie_group.name }}
+			{% endif %}
+		</h4>
+
+		<p>
+			{{ cookie_group.description }}
+		</p>
+		{% if not cookie_group.is_required %}
+			<div class="cookie-group-form d-inline-flex gap-2 mb-4">
+				{% if request|cookie_group_accepted:cookie_group.varname %}
+					<span class="cookie-consent-accepted">{% trans "Akzeptiert" %}</span>
+				{% else %}
+					<form class="cookie-consent-accept" action="{% url "cookie_consent_accept" cookie_group.varname %}" method="POST" up-submit>
+						{% csrf_token %}
+						<input type="submit" value="{% trans "Akzeptieren" %}">
+					</form>
+				{% endif %}
+
+				{% if request|cookie_group_declined:cookie_group.varname %}
+					<span class="cookie-consent-declined">{% trans "Abgelehnt" %}</span>
+				{% else %}
+					<form class="cookie-consent-decline" action="{% url "cookie_consent_decline" cookie_group.varname %}" method="POST" up-submit>
+						{% csrf_token %}
+						<input type="submit" value="{% trans "Ablehnen" %}">
+					</form>
+				{% endif %}
+			</div>
+		{% endif %}
+
+	</div>
+
+	{% if not cookie_group.is_required %}
+		<p>
+			{% blocktranslate with group=group_name trimmed %}
+			Die Gruppe {{group}} beinhaltet folgende Dienste
+			{% endblocktranslate %}:
+		</p>
+	{% endif %}
+
+
+	<ul>
+		{% for cookie in cookie_group.cookie_set.all %}
+			<li>
+				{% if cookie.name == "session" %}
+					{% translate "Sitzung" %}
+				{% elif cookie.name == "analytics" %}
+					Google Analytics
+				{% else %}
+					{{ cookie.name }}
+				{% endif %}
+				{% if cookie.domain %}
+					({{ cookie.domain }})
+				{% endif %}
+				{% if cookie.description %}
+					- {{ cookie.description }}
+				{% endif %}
+			</li>
+		{% endfor %}
+	</ul>
+
+</div>

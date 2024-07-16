@@ -1,0 +1,374 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-03 10:49+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, python-format
+msgid ""
+"Ich stimme der Datenverarbeitung gemäß unserer <a target=\"_new\" "
+"href=\"%(url)s\">Datenschutzerklärung</a> zu"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Unternehmen"
+msgstr ""
+
+msgid "Rufnummer"
+msgstr ""
+
+msgid "E-Mail-Adresse"
+msgstr ""
+
+msgid "Nachricht"
+msgstr ""
+
+msgid "E-Mail-Addresse"
+msgstr ""
+
+msgid "DSGVO"
+msgstr ""
+
+msgid "Vielen Dank für ihre Anfrage"
+msgstr ""
+
+#, python-format
+msgid "Neue Kontaktanfrage von %(name)s, %(company)s"
+msgstr ""
+
+msgid "Kontaktinformationen"
+msgstr ""
+
+msgid "Formularkopf"
+msgstr ""
+
+msgid ""
+"Ihre Nachricht wurde erfolgreich versendet / Your Message was successfully "
+"sent"
+msgstr ""
+
+msgid "Alle Kategorien"
+msgstr ""
+
+msgid "Alle Sprachen"
+msgstr ""
+
+msgid "Label Deutsch"
+msgstr ""
+
+msgid "Label Englisch"
+msgstr ""
+
+msgid "Ordering"
+msgstr ""
+
+msgid "Label"
+msgstr ""
+
+msgid "Sprachkürzel"
+msgstr ""
+
+msgid "z.B. DE"
+msgstr ""
+
+msgid "Gruppe"
+msgstr ""
+
+msgid "Sprachen"
+msgstr ""
+
+msgid "Titel"
+msgstr ""
+
+msgid "Beschreibung"
+msgstr ""
+
+msgid "Downloads"
+msgstr ""
+
+msgid "Kategorien"
+msgstr ""
+
+msgid "Startdatum"
+msgstr ""
+
+msgid "Enddatum"
+msgstr ""
+
+msgid "Stadt"
+msgstr ""
+
+msgid "Standort am Venue"
+msgstr ""
+
+msgid "URL"
+msgstr ""
+
+msgid "URL Label"
+msgstr ""
+
+msgid "Messe-Kategorien"
+msgstr ""
+
+msgid "Messen"
+msgstr ""
+
+msgid "Seite"
+msgstr ""
+
+msgid "Url"
+msgstr ""
+
+msgid "Items"
+msgstr ""
+
+msgid "Spalte"
+msgstr ""
+
+msgid "Bootstrap icon name"
+msgstr ""
+
+msgid "Entweder Seite oder Url müssen gesetzt werden"
+msgstr ""
+
+msgid "Footer"
+msgstr ""
+
+msgid "Kurzbeschreibung für Listenansicht"
+msgstr ""
+
+msgid "Subtitel"
+msgstr ""
+
+msgid "Anhänge"
+msgstr ""
+
+msgid "PARAT"
+msgstr ""
+
+msgid "PARAT Beitrag"
+msgstr ""
+
+msgid "Dokument"
+msgstr ""
+
+msgid "Beschriftung"
+msgstr ""
+
+msgid "Parat Blog Page"
+msgstr ""
+
+msgid "Image Slider Block"
+msgstr ""
+
+msgid "Style"
+msgstr ""
+
+msgid "Image Collage Block"
+msgstr ""
+
+msgid "Card-Headline"
+msgstr ""
+
+msgid "Card-Sub-Headline"
+msgstr ""
+
+msgid "Kartentext"
+msgstr ""
+
+msgid "Card Image"
+msgstr ""
+
+msgid "404: Seite nicht gefunden"
+msgstr ""
+
+msgid "Verlaufen?"
+msgstr ""
+
+msgid ""
+"Offenbar befindet sich die gesuchte Seite nicht im Portfolio unserer "
+"Struktur. Aber kein Grund zur Sorge: Lassen Sie uns gemeinsam den Weg "
+"zurückfinden."
+msgstr ""
+
+msgid ""
+"Verwenden Sie die Navigationsleiste für eine erneute Orientierung oder "
+"kehren Sie zur Startseite zurück, um mehr über unser Unternehmen und unsere "
+"Projektlösungen zu erfahren."
+msgstr ""
+
+msgid "Wir stehen Ihnen zur Seite, um Sie sicher ans Ziel zu führen."
+msgstr ""
+
+msgid "Ihr PARAT-Team"
+msgstr ""
+
+msgid "Previous"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "Deine Karrierechance bei PARAT"
+msgstr ""
+
+msgid ""
+"<p> Derzeit sind alle Positionen in unserem Team besetzt, aber das bedeutet "
+"nicht, dass wir nicht auf der Suche nach Talenten wie Dir sind! PARAT ist "
+"stets interessiert an motivierten und engagierten Fachkräften, die unser "
+"Unternehmen bereichern wollen. </p> <p> Zögere nicht, uns deine "
+"Initiativbewerbung zuzusenden oder besuche unsere Karriereseite regelmäßig, "
+"um zukünftige Möglichkeiten nicht zu verpassen.<br> Deine Chance bei PARAT "
+"könnte nur einen Klick entfernt sein! </p>"
+msgstr ""
+
+msgid "Initiativbewerbung"
+msgstr ""
+
+msgid "Anfrage senden"
+msgstr ""
+
+msgid "Technisch erforderlich"
+msgstr ""
+
+msgid "Statistiken"
+msgstr ""
+
+msgid "Akzeptiert"
+msgstr ""
+
+msgid "Akzeptieren"
+msgstr ""
+
+msgid "Abgelehnt"
+msgstr ""
+
+msgid "Ablehnen"
+msgstr ""
+
+#, python-format
+msgid "Die Gruppe %(group)s beinhaltet folgende Dienste"
+msgstr ""
+
+msgid "Sitzung"
+msgstr ""
+
+msgid ""
+"Diese Website verwendet Cookies, um eine bestmögliche Erfahrung bieten zu "
+"können."
+msgstr ""
+
+msgid "Mehr Informationen"
+msgstr ""
+
+msgid "Kategorie"
+msgstr ""
+
+msgid "Sprache"
+msgstr ""
+
+msgid "Download"
+msgstr ""
+
+msgid "Neue Messeauftritte in Planung"
+msgstr ""
+
+msgid ""
+"<p> Aktuell stehen keine bevorstehenden Messetermine fest. Aber PARAT ist "
+"fleißig dabei, die nächsten Messeauftritte vorzubereiten. </p> <p> Ob "
+"Branchentreffs oder internationale Leitmessen – wir freuen uns darauf, in "
+"Kürze neue Gelegenheiten zu schaffen, bei denen wir Ihnen unsere innovativen "
+"Lösungen persönlich präsentieren können. </p> <p> Schauen Sie bald wieder "
+"vorbei und bleiben Sie mit uns auf Entdeckungsreise neuester Produkte und "
+"spannender Entwicklungen! </p>"
+msgstr ""
+
+msgid "Kontakt"
+msgstr ""
+
+msgid "Kontaktieren Sie unseren Vertrieb"
+msgstr ""
+
+msgid ""
+"Sie erreichen uns unter <a href=\"tel:+49 8581 9992-0\">+49 8581 99992-0</a> "
+"oder über dieses Formular. Wir freuen uns auf Ihre Kontaktanfrage."
+msgstr ""
+
+msgid "Konfigurieren"
+msgstr ""
+
+msgid "Alle Cookies akzeptieren"
+msgstr ""
+
+msgid "Solutions"
+msgstr ""
+
+msgid "Im Überblick"
+msgstr ""
+
+msgid "Mehr erfahren"
+msgstr ""
+
+msgid "News"
+msgstr ""
+
+msgid "Keine News vorhanden!"
+msgstr ""
+
+msgid "Beitrag teilen"
+msgstr ""
+
+msgid "Entries for"
+msgstr ""
+
+msgid "Continue reading"
+msgstr ""
+
+msgid "No results found."
+msgstr ""
+
+msgid "Return"
+msgstr ""
+
+msgid "Related Entries"
+msgstr ""
+
+msgid "No entry archives yet"
+msgstr ""
+
+msgid "No categories yet"
+msgstr ""
+
+msgid "No entries yet"
+msgstr ""
+
+msgid "No tags yet"
+msgstr ""
+
+msgid "Einsatzgebiete"
+msgstr ""
+
+msgid "Folge uns"
+msgstr ""
+
+#~ msgid "global.page.404_title"
+#~ msgstr "404 Seite nicht gefunden."
+
+#~ msgid "global.page.404_content"
+#~ msgstr "Seite nicht gefunden."

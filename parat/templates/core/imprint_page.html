@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+{% load breadcrumbs %}
+{% block content %}
+	<div class="container">
+		<div class="breadcrumbs-container my-4">
+			{% breadcrumbs %}
+		</div>
+
+		<h1 class="display-1">
+			{{ page.title }}
+		</h1>
+
+		{{ page.body }}
+	</div>
+{% endblock %}

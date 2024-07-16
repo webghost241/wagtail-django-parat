@@ -1,0 +1,8 @@
+{% comment %} {{ value.file.url }}
+{{ value.file }} {% endcomment %}
+<div class="d-flex justify-content-center video-container">
+	<video id="video-container__video-{{ value.id }}" width="1060" height="1060">
+	<source src="{{ value.file.url }}" type="video/mp4">
+	Your browser does not support the video tag.
+	</video>
+</div>

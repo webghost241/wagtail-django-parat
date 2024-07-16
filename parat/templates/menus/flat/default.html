@@ -1,0 +1,32 @@
+{% load page_type_url %}
+<div class="container-fluid d-flex flex-column">
+	{% if menu_handle == 'footer-col-solutions' %}
+		{% page_type_url 'solutions' 'SolutionIndexPage' as page %}
+	{% elif menu_handle == 'footer-col-company' %}
+		{% page_type_url 'company' 'CompanyIndexPage' as page %}
+		{#		{% elif menu_handle == 'footer-col-services' %}#}
+	{% endif %}
+	{% with product_url='https://products.parat.de/'  %}
+		{% if menu_handle == 'footer-col-products'%}
+			<a class="link-footer" href="{{ product_url }}">
+				<h5 class="my-3">
+					{{menu_heading}}
+				</h5>
+			</a>
+		{% elif page %}
+			<a class="link-footer" href="{{ page.url }}">
+				<h5 class="my-3">
+					{{menu_heading}}
+				</h5>
+			</a>
+		{% else %}
+			<h5 class="my-3">
+				{{ menu_heading }}
+			</h5>
+		{% endif %}
+
+	{% endwith %}
+	{% for item in menu_items %}
+		<a class="link-footer mb-1" href="{{ item.href }}">{{ item.text }}</a>
+	{% endfor %}
+</div>

@@ -1,0 +1,47 @@
+{% load page_type_url %}
+<footer class="bg-black py-3 text-white">
+	<div class="container">
+		<div class="row py-4  d-flex mx-2 justify-content-end justify-content-md-center border-bottom border-primary align-items-start">
+			{% for column in footer_columns %}
+				<div class="col-6 col-md-2">
+					<div class="d-flex flex-column">
+						{% if column.link %}
+							<a class="link-footer" href="{{ column.link.url }}" {% if column.link.external %}target="_new"{% endif %}>
+								<h5 class="my-3">
+									{{column.title}}
+								</h5>
+							</a>
+						{% else %}
+							<h5 class="my-3">
+								{{column.title}}
+							</h5>
+						{% endif %}
+						{% for item in column.items.all %}
+							<a class="link-footer icon-link mb-1" href="{{ item.link.url }}" {% if item.link.external %}target="_new"{% endif %}>
+								{% if item.icon_name %}<i class="bi-{{ item.icon_name }} w-20 h-20"></i>{% endif %} {{ item.title }}
+							</a>
+						{% endfor %}
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	<div class="my-3">
+		<div class="container-fluid d-flex flex-row justify-content-center flex-wrap">
+			{% for item in footer_bottom_items %}
+				<div class="{% if forloop.first %} col-12 col-md-auto {% else %}{% if not forloop.last %} border-end{% endif %} {% endif %} mb-3 menu-item justify-content-center d-flex">
+					{% if item.link %}
+					<a class="link-footer px-4" href="{{ item.link }}">
+						{{ item.title}}
+					</a>
+					{% else %}
+					<div class="px-4" style="font-size: 16px;">
+						{{ item.title}}
+					</div>
+					{% endif %}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</footer>
+

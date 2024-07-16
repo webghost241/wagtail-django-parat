@@ -1,0 +1,13 @@
+{% load wagtailcore_tags %}
+<div class="container col-12 px-1 animated-block d-flex justify-content-center">
+    {% block row_content %}
+        <div class="row d-flex col-12 {% if self.mobile_ordering == "second" %}flex-column-reverse{% endif %} flex-lg-row align-items-center">
+            <div class="col-12 col-lg-{{ col_width_left }} my-2 my-md-4 px-4">
+                {% include_block self.first with column_width=col_width_left %}
+            </div>
+            <div class="col-12 col-lg-{{ col_width_right }} my-2 my-md-4 px-4">
+                {% include_block self.second with column_width=col_width_right %}
+            </div>
+        </div>
+    {% endblock %}
+</div>

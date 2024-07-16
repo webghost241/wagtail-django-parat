@@ -1,0 +1,67 @@
+{% extends "core/standard_page.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load breadcrumbs %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% block content %}
+	<div class="text-white" style="background-color: #181818;">
+		{% block header %}
+			<div class="solution-header">
+				<div class="container">
+					{% block header_row %}
+						<div>
+							<h1 class="preheadline">
+								{{ page.introduction_headline }}
+							</h1>
+							<h1 class="display-1 font-weight-bolder mb-4 mt-2 solution-header-title">
+								{{ page.introduction_subheadline }}
+							</h1>
+							<p class="solution-header-text">
+								{{ page.introduction_text |richtext }}
+							</p>
+						</div>
+					{% endblock %}
+				</div>
+			</div>
+		{% endblock %}
+		{% block body_blocks %}
+			{% for block in page.body %}
+				<section class="section-{{ block.block_type }}">
+					{% if block.block_type == "split_row_block" %}
+						<div class="">
+							{% include_block block %}
+						</div>
+					{% elif block.block_type == "headline_and_text_block" %}
+						<div class="container">
+							{% include_block block %}
+						</div>
+					{% elif block.block_type == "image_collage_block" %}
+						<div class="container-lg overflow-hidden">
+							<div class="row justify-content-center">
+								<div class="col col-lg-10">
+									{% include_block block %}
+								</div>
+							</div>
+						</div>
+					{%  else %}
+						<div class="container py-4">
+							{% include_block block %}
+						</div>
+					{% endif %}
+				</section>
+			{% endfor %}
+		{% endblock %}
+		{% block after_body_blocks %}
+
+			{% if page.solutions %}
+				{% include "includes/solutions_slider.html" with solutions=page.solutions %}
+			{% endif %}
+
+			<div id="arrow_indicator" class="relative sticky-bottom">
+				<i class="solution-indicator-arrow next-section position-absolute sticky-bottom bi bi-arrow-down ms-2"></i>
+			</div>
+
+			{% include "includes/contact_modal.html" %}
+		{% endblock %}
+	</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load page_type_url %}
+
+{% block content %}
+	<div class="container">
+		<p>
+			{% translate "Diese Website verwendet Cookies, um eine bestmögliche Erfahrung bieten zu können." %}
+			{% page_type_url 'core' 'DataProtectionPage' as p %}
+			<a href="{{ p.url }}">{% translate 'Mehr Informationen' %}...</a>
+		</p>
+		<hr>
+		{% for cookie_group in object_list  %}
+			{% include "cookie_consent/_cookie_group.html" %}
+			<hr>
+		{% endfor %}
+	</div>
+{% endblock %}

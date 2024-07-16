@@ -1,0 +1,64 @@
+@import "swiper/css";
+@import "swiper/css/navigation";
+
+/* swiper override */
+a.swiper-slide {
+	text-decoration: none;
+}
+
+.swiper-container {
+	position: relative;
+	width: 100%;
+
+	@include media-breakpoint-up(md) {
+		.swiper {
+			mask-image: linear-gradient(to right, transparent 0%, black 10% 90%, transparent 100%);
+		}
+	}
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+	display: none;
+
+	&::after {
+		content: "" !important;
+	}
+
+}
+
+
+@include media-breakpoint-up(md) {
+
+	.swiper-button-prev,
+	.swiper-button-next {
+		--swiper-navigation-size: 3.125rem;
+		--swiper-navigation-color: #{$black};
+
+		background-color: #{$white};
+		border-radius: 50%;
+		box-shadow: #{$box-shadow};
+		display: flex;
+		padding: 1rem;
+		width: var(--swiper-navigation-size) !important;
+		height: var(--swiper-navigation-size) !important;
+	}
+
+	.swiper-button-prev {
+		left: 4.5rem;
+	}
+
+	.swiper-button-next {
+		right: 4.5rem;
+	}
+}
+
+@include media-breakpoint-down(sm) {
+	.swiper-container {
+		.swiper-wrapper {
+			a.swiper-slide:first-child {
+				margin-left: -8rem;
+			}
+		}
+	}
+}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "404: Seite nicht gefunden" %}{% endblock %}
+
+{% block content %}
+	{% block body_blocks %}
+		<div class="container py-4">
+			<div class="row py-5 my-5">
+				<div class="col-md-10 px-md-4 d-flex justify-content-center">
+					<div class="col-md-10">
+						<h1 class="preheadline">
+							{% translate '404: Seite nicht gefunden' %}
+						</h1>
+						<h2 class="display-1 mb-3">
+							{% translate "Verlaufen?" %}
+						</h2>
+
+						<p>
+							{% translate 'Offenbar befindet sich die gesuchte Seite nicht im Portfolio unserer Struktur. Aber kein Grund zur Sorge: Lassen Sie uns gemeinsam den Weg zurückfinden.' %}
+						</p>
+						<p>
+							{% translate 'Verwenden Sie die Navigationsleiste für eine erneute Orientierung oder kehren Sie zur Startseite zurück, um mehr über unser Unternehmen und unsere Projektlösungen zu erfahren.' %}
+						</p>
+						<p>
+							{% translate 'Wir stehen Ihnen zur Seite, um Sie sicher ans Ziel zu führen.' %}
+						</p>
+						<p>
+							{% translate 'Ihr PARAT-Team' %}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+{% endblock body_blocks %}
+{% endblock content %}

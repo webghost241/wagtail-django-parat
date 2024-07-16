@@ -1,0 +1,18 @@
+{% load wagtailcore_tags %}
+{% if self.content.live %}
+	<div class="container-fluid justify-content-center row m-md-5 my-5">
+		<div class="container-fluid justify-content-center col-md-10 row">
+			<div class="col-md-6">
+				<h3>{{ self.title }}</h3>
+				<div class="d-flex flex-column gap-3">
+					{% for job in self.content %}
+						{% if job.job.live %}
+						{% include_block job with link_text=self.link_text %}
+						{%  endif %}
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endif %}
+

@@ -1,0 +1,27 @@
+{% load wagtailcore_tags %}
+<div class="column-hero-text-block gx-2 d-flex justify-content-center flex-column h-100">
+	{% block hero_text_content %}
+		<div class="col {% if self.centered %}text-center{% endif %} justify-content-center">
+			<header>
+				<h6 class="preheadline">{{ self.pre_headline }}</h6>
+				<h2 class="headline mt-2 mb-4">{{ self.headline }}</h2>
+			</header>
+			<p>
+				{{ self.text|richtext }}
+			</p>
+			{% if self.page or self.url %}
+				{% if self.link_with_button %}
+					<a class="btn btn-primary"
+				{% else %}
+					<a class="text-link arrowed-link"
+				{% endif %}
+				{% if self.page %}
+						href="{{ self.page.url }}">
+				{% else %}
+						href="{{ self.url }}">
+				{% endif %}
+				{{ self.link_text }}</a>
+			{% endif %}
+		</div>
+	{% endblock %}
+</div>

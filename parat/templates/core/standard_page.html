@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags wagtailcore_tags %}
+{% load breadcrumbs %}
+{% block content %}
+    {% block header %}
+        {% block header_row %}
+            {% if page.header_image %}
+                {% image page.header_image height-1000 as header_image %}
+                <header class="d-flex flex-column justify-content-end"
+                        style="height: 50vh;
+                               background-image: url('{{ header_image.url }}');
+                               background-size: cover;
+                               {{ header_image.background_position_style }}">
+                {% else %}
+                    <header class="d-flex flex-column justify-content-end"
+                            style="min-height: 5rem">
+                    {% endif %}
+                    <div class="container my-1 my-md-4">{% breadcrumbs %}</div>
+                </header>
+                <div class="container px-3">
+                    <div class="row d-flex col-lg-12 px-4 py-5 my-5 justify-content-start">
+                        <div class="col-12 col-lg-8 offset-lg-1 gx-0 d-flex justify-content-left">
+                            <div>
+                                <h1 class="preheadline">{{ page.introduction_headline }}</h1>
+                                <h2 class="display-1 mb-3">{{ page.introduction_subheadline }}</h2>
+                                {{ page.introduction_text|richtext }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+        {% endblock %}
+        {% block before_body_blocks %}{% endblock %}
+        {% block body_blocks %}
+            {% for block in page.body %}
+                {# this controls creates a max width for 12 columns, amend if someone asks for 12-col and not 100% #}
+                {% if block.block_type in 'paragraph_block,headline_and_text_block,video_embed_block' %}
+                    <div class="container">
+                    {% endif %}
+                    <!-- TODO: hier link farbe einstellen-->
+                    <section class="section-{{ block.block_type }} {{ block.value.background_color|default:'' }} {% if block.value.background_color == "text-bg-primary" %}white-links{% endif %}">
+                        {% include_block block %}
+                    </section>
+                    {% if block.block_type in 'paragraph_block,headline_and_text_block,video_embed_block' %}</div>{% endif %}
+            {% endfor %}
+        {% endblock %}
+        {% block after_body_blocks %}{% endblock %}
+    {% endblock %}

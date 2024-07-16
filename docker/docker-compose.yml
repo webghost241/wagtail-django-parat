@@ -1,0 +1,80 @@
+version: "3.4"
+
+volumes:
+  parat_postgres_data: {}
+
+x-django-common:
+  &django-common
+    build:
+      context: ..
+      dockerfile: ./docker/django/Dockerfile
+      target: dev
+    env_file: ./.env
+    image: parat_django
+    depends_on:
+      - postgres
+    restart: on-failure
+    volumes:
+      - ..:/home/app/parat:z
+
+services:
+  postgres:
+    env_file: ./.env
+    image: docker.io/postgres:15-alpine
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', 'parat']
+    environment:
+      POSTGRES_DB: parat
+      POSTGRES_USER: parat
+      POSTGRES_PASSWORD: 1234
+    #ports:
+    #  - 5432:5432
+    volumes:
+      - parat_postgres_data:/var/lib/postgresql/data
+      - ./postgres/postgres-init.sh:/docker-entrypoint-initdb.d/postgres-init.sh:ro
+      # TODO: enable this mountpoint if you wish to import data from a prexisting postgres dump
+      - ../tmp/parat.dump:/var/tmp/parat.dump:ro
+
+  django:
+    <<: *django-common
+    healthcheck:
+      test: ['CMD', 'nc', '-z', '-v', 'localhost', '8000']
+      interval: 20s
+      timeout: 60s
+      start_period: 15s
+    ports:
+      - "8000:8000"
+
+  setup:
+    <<: *django-common
+    restart: "no"
+    command: ["./manage.py", "migrate"]
+
+  docs:
+    build:
+      context: ..
+      dockerfile: ./docker/docs/Dockerfile
+    command: make livehtml
+    env_file: ./.env
+    volumes:
+      - ..:/home/app/parat:z
+    ports:
+      - "9000:9000"
+
+  node:
+    build:
+      context: ..
+      dockerfile: ./docker/node/Dockerfile
+    env_file: ./.env
+    volumes:
+      - ..:/home/node:z
+      - /home/node/ui/node_modules
+    ports:
+      - "5173:5173"
+
+  smtp:
+    image: docker.io/mailhog/mailhog
+    ports:
+      - "1080:8025"
+      - "8025:8025"
+      - "1025:1025"

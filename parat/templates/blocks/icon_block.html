@@ -1,0 +1,12 @@
+{% load wagtailimages_tags %}
+{% image self.image fill-200x200-c100 as self_image %}
+<div class="text-center object-fit-contain">
+    <img src="{{ self_image.url }}"
+         loading="lazy"
+         class="mb-4 img {{ self.shadow }}"
+         width="100px"
+         height="100px"
+         alt="{% if self.attribution %}{{ self.attribution }}{% endif %}">
+    <h6 class="preheadline">{{ self.pre_headline }}</h6>
+    <h2 class="h2 my-2">{{ self.headline }}</h2>
+</div>

@@ -1,0 +1,24 @@
+{
+	"name": "Existing Docker Compose (Extend)",
+	"dockerComposeFile": [
+		"../docker/docker-compose.yml"
+	],
+	"service": "django",
+	"workspaceFolder": "/home/app/parat",
+	"remoteUser": "app",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"python.pythonPath": "/venv/bin/python",
+				"python.defaultInterpreterPath": "/venv/bin/python"
+			},
+			"extensions": [
+				"ms-python.python",
+				"ms-python.black-formatter",
+				"ms-python.flake8",
+				"editorconfig.editorconfig",
+				"syler.sass-indented"
+			]
+		}
+	}
+}

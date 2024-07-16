@@ -1,0 +1,10 @@
+{% load wagtailcore_tags %}
+<div class="container-fluid card job-card rounded-4 shadow p-5">
+	<header>
+		<h4>{{ self.job.headline }}</h4>
+	</header>
+	<div class="row">
+		<div class="col-12 col-md-8">{{ self.job.short_description }}</div>
+		<a class="col-12 col-md-4 text-link text-md-end" href="{% pageurl self.job %} ">{{ link_text }}></a>
+	</div>
+</div>

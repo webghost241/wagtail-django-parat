@@ -1,0 +1,10 @@
+{% extends "mail/base.html" %}
+{% block content %}
+	<p class="false"><span style="font-size: 16px;"><strong>Neue Kontaktanfrage!</strong></span></p>
+	<p class="false">&nbsp;</p>
+	<p class="false">Name: {{ contact_request.name }}</p>
+	<p class="false">Firma: {{ contact_request.company }}</p>
+	<p class="false">Telephon Nummer: {{ contact_request.phone }}</p>
+	<p class="false">Email: {{ contact_request.email }}</p>
+	<p class="false">Nachricht: {{ contact_request.message }}</p>
+{% endblock %}
